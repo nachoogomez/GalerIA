@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       window.scrollTo(0, 0);
     }, [pathname]);
     
-    return <div>{children}</div>;
+    return <div className='flex flex-col content-center'>{children}</div>;
   }
   
   export default Layout

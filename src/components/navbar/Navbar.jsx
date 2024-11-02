@@ -18,15 +18,15 @@ function Navbar() {
 
         {/* Menu for larger screens */}
         <div className="hidden md:flex space-x-4 items-center">
-          <a href="#about" className="text-white hover:text-gray-200">
-            About
-          </a>
-          <a href="#services" className="text-white hover:text-gray-200">
+          <Link to="/about" className="text-white hover:text-gray-200">
+            About Us
+          </Link>
+          <Link to="/products" className="text-white hover:text-gray-200">
             Products
-          </a>
-          <a href="#contact" className="text-white hover:text-gray-200">
-            Contact
-          </a>
+          </Link>
+          <Link to="/contact" className="text-white hover:text-gray-200">
+            Contact Us
+          </Link>
           <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
           Sign In
           <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ function Navbar() {
             About
           </a>
           <a href="#services" className="block py-2 px-4 text-white hover:bg-blue-700">
-            Services
+            Products
           </a>
           <a href="#contact" className="block py-2 px-4 text-white hover:bg-blue-700">
             Contact
