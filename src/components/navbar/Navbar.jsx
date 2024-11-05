@@ -72,7 +72,7 @@ function Navbar() {
             <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
               Contact Us
             </Link>
-            <Link className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+            <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
               Sign In
               <FaArrowRight />
             </Link>

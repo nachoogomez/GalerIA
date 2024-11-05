@@ -4,6 +4,7 @@ import LogIn from '../pages/LogIn';
 import Products from '../pages/Products';
 import ContactUs from '../pages/ContactUs';
 import AboutUs from '../pages/AboutUs';
+import Register from '../components/register/Register';
 
 
 function Routes(){
@@ -15,6 +16,7 @@ function Routes(){
             <Route path="/products" element={<Products/>}/>
             <Route path='/contact' element={<ContactUs/>}/>
             <Route path='/about' element={<AboutUs/>}/>
+            <Route path='/register' element={<Register/>}/>
         </ReactDomRoutes>
     )
 }

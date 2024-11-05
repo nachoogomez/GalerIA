@@ -49,7 +49,7 @@ const products = [
         title: "Guernica",
         artist: "Pablo Picasso",
         year: 1937,
-        description: "A mural-sized oil painting on canvas by Pablo Picasso, depicting the suffering of people and animals during the Spanish Civil War.",
+        description: "A mural-sized oil painting on canvas by Pablo Picasso, depicting the suffering of people and animals.",
         price: 200000000,
         imageUrl: "https://res.cloudinary.com/duslo5lw8/image/upload/v1730583734/Galeria/vtujt8ji8yx2ejpor7zh.webp"
     },
@@ -76,7 +76,7 @@ const products = [
         title: "American Gothic",
         artist: "Grant Wood",
         year: 1930,
-        description: "A painting by Grant Wood depicting a farmer standing beside his daughter, often interpreted as a depiction of rural American life.",
+        description: "A painting by Grant Wood depicting a farmer standing beside his daughter, often interpreted.",
         price: 6000000,
         imageUrl: "https://res.cloudinary.com/duslo5lw8/image/upload/v1730583734/Galeria/ydtvdnx8diawhprhhqh5.webp"
     }
