@@ -8,6 +8,7 @@ const Hero = () => {
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900">Galery Art</h1>
                 <p className="mb-8 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quod consequuntur rerum quam voluptate praesentium ducimus eveniet atque tempora consequatur, aut exercitationem explicabo, animi perferendis doloremque quasi illum delectus quis.</p>
                 <div className="flex justify-center">
+                    {/*Link a la galeria hecha en ThreeJS*/}
                     <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Open Galery</button>
                 </div>
             </div>

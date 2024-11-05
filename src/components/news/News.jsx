@@ -1,4 +1,7 @@
+import NewsCard from "./NewsCard"
+
 const News = () => {
+      
   return (
     <section >
         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900 text-center mt-10" >Lastest Art News</h1>
@@ -12,46 +15,10 @@ const News = () => {
                         </h1>
                     </div>
                 </div>
-
-                <div className="mt-8 lg:w-1/4 lg:mt-0 lg:px-6">
-                    <div>
-                        <h3 className="text-blue-800 capitalize">Design instument</h3>
-
-                        <a href="#" className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500  ">
-                            How to raise $100k+ by using blox ui kit on your design
-                        </a>
-                    </div>
-
-                    
-
-                    <div>
-                        <h3 className="text-blue-800 capitalize">UI Resource</h3>
-
-                        <a href="#" className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500  ">
-                            Should you creat UI Product by using Blox?
-                        </a>
-                    </div>
-
-                    
-
-                    <div>
-                        <h3 className="text-blue-800 capitalize">Premium Collection</h3>
-
-                        <a href="#" className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500">
-                            Top 10 Blocks you can get on Blox&apos;s collection.
-                        </a>
-                    </div>
-
-            
-
-                    <div>
-                        <h3 className="text-blue-800 capitalize">Premium kits</h3>
-
-                        <a href="#" className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500 ">
-                            Top 10 Ui kit you can get on Blox&apos;s collection.
-                        </a>
-                    </div>
+                <div className="mt-8 lg:w-1/4 lg:mt-4 lg:px-6 flex gap-10 flex-col" >
+                    <NewsCard/>
                 </div>
+               
             </div>
         </div>
     </section>
