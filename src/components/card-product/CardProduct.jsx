@@ -1,4 +1,4 @@
-
+import { formatPrice } from "../../utils/formatPrice"
 
 const CardProduct = ({title, price, imageUrl, artist, description, year}) => {
   return (
@@ -14,6 +14,7 @@ const CardProduct = ({title, price, imageUrl, artist, description, year}) => {
           <p className="text-sm text-gray-600">{artist}</p>
         </div>
         <p className="text-sm text-gray-500 mb-2">Año: {year}</p>
+        <p className="text-sm text-gray-500 mb-2">{formatPrice(price)}</p>
         <p className="text-sm text-gray-700 mb-4">
           {description}
         </p>

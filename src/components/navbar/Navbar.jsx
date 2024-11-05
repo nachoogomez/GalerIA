@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa6";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-900 p-4">
+    <nav className="bg-gray-900 p-4 w-full">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-white text-2xl font-bold">
@@ -29,10 +30,8 @@ function Navbar() {
           </Link>
           <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
           Sign In
-          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </Link>
+            <FaArrowRight />
+          </Link>
         </div>
 
         
@@ -64,22 +63,19 @@ function Navbar() {
       {/* Dropdown menu for mobile */}
       {isOpen && (
         <div className="md:hidden">
-          <a href="#about" className="block py-2 px-4 text-white hover:bg-blue-700">
-            About
-          </a>
-          <a href="#services" className="block py-2 px-4 text-white hover:bg-blue-700">
-            Products
-          </a>
-          <a href="#contact" className="block py-2 px-4 text-white hover:bg-blue-700">
-            Contact
-          </a>
-          <button className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-          Sign In
-          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </button>
-
+            <Link to="/about" className="block py-2 px-4 text-white hover:bg-blue-700">
+              About Us
+            </Link>
+            <Link to="/products" className="block py-2 px-4 text-white hover:bg-blue-700">
+              Products
+            </Link>
+            <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
+              Contact Us
+            </Link>
+            <Link className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+              Sign In
+              <FaArrowRight />
+            </Link>
         </div>
       )}
     </nav>
