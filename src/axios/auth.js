@@ -17,7 +17,7 @@ export const createUser = async (email, password) => {
 
 export const loginUser = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}auth/login`, {
+      const response = await axios.post(`${API_URL}/user/login`, {
         email,
         password,
       });
