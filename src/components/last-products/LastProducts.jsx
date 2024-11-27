@@ -5,8 +5,8 @@ import {formatPrice} from '../../utils/formatPrice'
 const LastProducts = () => {
   
   return (
-    <div className='flex flex-wrap flex-col items-center gap-7 mb-8'>
-    <div className='flex flex-wrap gap-4'>
+    <div className='flex flex-wrap flex-col items-center gap-7 mb-8 '>
+    <div className='flex flex-wrap gap-4 justify-center'>
       <div>
         <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden">
           <img

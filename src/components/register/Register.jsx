@@ -1,78 +1,61 @@
 // Code for the Register component
-import { useState } from 'react'
 import { Link } from "react-router-dom";
+import {Formik, Form as FormikForm, Field, ErrorMessage} from 'formik'
+import { registerInitialValues} from '../../formik/initialValues'
+import { registerValidationSchema } from '../../formik/validationSchema'
+import {createUser} from '../../axios/auth'
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Datos del formulario:', formData)
-    // Aquí puedes agregar la lógica para enviar los datos al servidor
-  }
+  const navigate = useNavigate();
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-6">
+    <div className="w-full h-screen max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-6">
       <div className="px-6 py-4">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Registro</h2>
         <p className="text-gray-600 mb-6">Crea una nueva cuenta</p>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Nombre
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Tu nombre"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
+        <Formik
+         initialValues={registerInitialValues}
+         validationSchema={registerValidationSchema}
+         onSubmit={async (values, actions) =>{
+            const user = await createUser(values.email, values.password);
+            actions.resetForm();
+            console.log(user)
+          if (user) {
+            navigate("/login");
+          }
+         }} 
+      >
+        <FormikForm  className="space-y-6" >
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Correo electrónico
             </label>
-            <input
+            <Field
               id="email"
               name="email"
               type="email"
               placeholder="tu@email.com"
-              value={formData.email}
-              onChange={handleChange}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
+            <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Contraseña
-            </label>
-            <input
+            <Field
               id="password"
               name="password"
               type="password"
               placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
+            <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+            </label>
           </div>
           <button
             type="submit"
@@ -80,7 +63,8 @@ const Register = () => {
           >
             Registrarse
           </button>
-        </form>
+        </FormikForm>
+        </Formik>
       </div>
       <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
         <p className="text-sm text-gray-600 text-center">
@@ -89,7 +73,7 @@ const Register = () => {
           <Link to="/login" className="text-blue-600 hover:underline">
               Sign In
               
-            </Link>
+          </Link>
         </p>
       </div>
     </div>
