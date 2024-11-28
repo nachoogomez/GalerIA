@@ -1,16 +1,25 @@
-import { Link } from "react-router-dom";
+//Formik
 import {Formik, Form as FormikForm, Field, ErrorMessage} from 'formik'
 import { loginInitialValues} from '../../formik/initialValues'
 import { loginValidationSchema } from '../../formik/validationSchema'
+
+//Axios
 import {loginUser} from '../../axios/auth'
+
+//Redux
 import {useDispatch} from "react-redux";
-import useRedirect from "../../hooks/useRedirect";
+
+//React Router
+import {useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import {setCurrentUser} from "../../redux/user/userSlice";
 
 const Login = () => {
 
   const dispatch = useDispatch();
-  useRedirect("/")
+  const navigate = useNavigate();
+ 
   
   return (
     <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl mt-6 h-screen">
@@ -37,6 +46,7 @@ const Login = () => {
                     dispatch(setCurrentUser({
                         ...user,
                     }))
+                        navigate('/')
                     }
   
                 }}
