@@ -27,3 +27,4 @@ export const loginUser = async (email, password) => {
       return alert(error.response.data.msg);
     }
   };
+

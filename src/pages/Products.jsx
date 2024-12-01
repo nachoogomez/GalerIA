@@ -1,22 +1,31 @@
-import { useSelector } from "react-redux"
-import CardProduct from "../components/card-product/CardProduct"
+import { useEffect, useState } from "react";
+import CardProduct from "../components/card-product/CardProduct";
+import { fetchProducts } from "@/axios/products";
+import Spinner from "@/components/ui/Spinner";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
+  useEffect(() => {
+    const getProducts = async () => {
+      const fetchedProducts = await fetchProducts();
+      setProducts(fetchedProducts);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); 
+    };
 
- let products = useSelector(state => state.products.products)
+    getProducts();
+  }, []);
 
+  if (isLoading) return <Spinner />; 
   return (
     <section className="max-w-screen-xl flex flex-wrap gap-5 justify-items-center mt-6">
-        {
-          Object.entries(products).map(([,productos]) => {
-            return productos.map((producto) => {       
-                return <CardProduct {...producto} key={producto.id} />  
-            })
-          })
-        }
-        
-    </section >
-  )
-}
+      {products.map((producto) => (
+        <CardProduct {...producto} key={producto.id} />
+      ))}
+    </section>
+  );
+};
 
-export default Products
+export default Products;
