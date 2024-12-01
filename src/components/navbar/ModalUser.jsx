@@ -10,8 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AvatarIcon from "../ui/AvatarIcon";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../redux/user/userSlice";
+import { jwtDecode } from "jwt-decode";
 
 const ModalUser = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,15 @@ const ModalUser = () => {
   const handleLogout = () => {
     dispatch(clearCurrentUser());
     navigate("/login");
-  };
+  }; 
+  
+  const token = useSelector((state) => state.user.currentUser.access_token);
+
+  const decodedToken = jwtDecode(token);
+ 
+  const role = decodedToken.role; 
+  
+  
 
   return (
     <DropdownMenu>
@@ -30,9 +39,11 @@ const ModalUser = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link to="/dashboard">Dashboard</Link>
-        </DropdownMenuItem>
+        {role === "SUPER" ? 
+          <DropdownMenuItem>
+            <Link to="/dashboard">Dashboard</Link>
+          </DropdownMenuItem> : null
+        }
         <DropdownMenuItem>
           <Button onClick={handleLogout}>Log Out</Button>
         </DropdownMenuItem>

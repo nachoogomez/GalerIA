@@ -5,6 +5,8 @@ import { fetchProducts, createProduct, updateProduct, deleteProduct } from '../a
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
+
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,9 @@ const Dashboard = () => {
 
   const token = useSelector((state) => state.user.currentUser.access_token);
 
+  const decodedToken = jwtDecode(token);
+  const role = decodedToken.role;
+ 
   useEffect(() => {
     fetchProductsData();
   }, []);
@@ -72,7 +77,20 @@ const Dashboard = () => {
     }
   };
 
+  if (role !== "SUPER" && role !== "ADMIN") {
+    return (
+      <div className='flex flex-col items-center justify-center h-screen'>
+         <p className='flex justify-center items-center text-3xl font-bold '>Usted no tiene permiso para acceder a esta seccion</p>
+         <p className='flex justify-center items-center text-xl font-bold '>Sera redirigido en 3 segundos</p>
+          {setTimeout(() => {
+            window.location.href = '/';
+          }, 3000)}
+      </div>
+    );
+  }
+ 
   return (
+
     <Container>
       <Typography variant="h4" component="h1" gutterBottom>
         Gestión de Productos
