@@ -7,7 +7,7 @@ import AboutUs from '../pages/AboutUs';
 import Register from '../components/register/Register';
 import Dashboard from '@/pages/Dashboard';
 
-
+//Rutas
 function Routes(){
     return(
         <ReactDomRoutes>

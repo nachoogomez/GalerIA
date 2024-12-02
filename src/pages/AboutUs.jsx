@@ -14,6 +14,7 @@ const AboutUs = () => {
         </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {/*Mapea las caracteristicas de la empresa */}
             {['Innovation', 'Quality', 'Customer Focus'].map((feature, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold mb-2">{feature}</h3>

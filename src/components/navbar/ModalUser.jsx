@@ -8,26 +8,28 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import AvatarIcon from "../ui/AvatarIcon";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../redux/user/userSlice";
 import { jwtDecode } from "jwt-decode";
 
 const ModalUser = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Hook para despachar acciones de Redux
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
+  // Función para cerrar sesión, limpia el usuario actual y redirige al usuario a la página de inicio
   const handleLogout = () => {
     dispatch(clearCurrentUser());
     navigate("/login");
   }; 
   
+  // Obtiene el token del estado global
   const token = useSelector((state) => state.user.currentUser.access_token);
 
+  // Decodifica el token
   const decodedToken = jwtDecode(token);
- 
+  
+  // Obtiene el rol del usuario
   const role = decodedToken.role; 
   
   
@@ -37,10 +39,10 @@ const ModalUser = () => {
       <DropdownMenuTrigger>
         <AccountCircleIcon sx={{ color: 'white' }}/>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="mr-8">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {role === "SUPER" ? 
+        {role === "SUPER" ?  // Si el rol del usuario es SUPER, mostrar el enlace al dashboard
           <DropdownMenuItem>
             <Link to="/dashboard">Dashboard</Link>
           </DropdownMenuItem> : null

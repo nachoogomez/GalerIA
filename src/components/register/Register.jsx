@@ -17,12 +17,13 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Registro</h2>
         <p className="text-gray-600 mb-6">Crea una nueva cuenta</p>
         <Formik
-         initialValues={registerInitialValues}
-         validationSchema={registerValidationSchema}
+         initialValues={registerInitialValues} // Initial values
+         validationSchema={registerValidationSchema} // Validation schema
          onSubmit={async (values, actions) =>{
+           //Llamada a la API para crear el usuario con los datos del formulario
             const user = await createUser(values.email, values.password);
             actions.resetForm();
-            console.log(user)
+            // Si la respuesta es exitosa, redirigir al usuario a la página de inicio de sesión
           if (user) {
             navigate("/login");
           }

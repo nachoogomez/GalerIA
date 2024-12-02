@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import {regEmail} from '../utils/regEmail'
 
+// Validación de los campos del formulario
 export const registerValidationSchema = Yup.object({
     email: Yup.string()
       .matches(regEmail, 'Mail no válido')
@@ -11,6 +12,7 @@ export const registerValidationSchema = Yup.object({
       .required('Campo requerido'),
   });
 
+  // Validación de los campos del formulario
   export const loginValidationSchema = Yup.object({
     email: Yup.string()
       .matches(regEmail, 'Mail no válido')

@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom';
 import { fetchProducts } from '../../axios/products';
 
 const LastProducts = () => {
+
+  // Hook para guardar los productos en el estado 
   const [products, setProducts] = useState([]);
 
+  // Hook para obtener los productos al cargar el componente 
   useEffect(() => {
+    // Función para obtener los productos
     const getProducts = async () => {
       try {
         const fetchedProducts = await fetchProducts();
+        // Ordenar los productos por id y obtener los últimos 3
         const lastThreeProducts = fetchedProducts.sort((a, b) => b.id - a.id).slice(0, 3);
+        // Guardar los últimos 3 productos en el estado
         setProducts(lastThreeProducts);
       } catch (error) {
+        // Manejar el error
         console.error('Error al obtener los productos:', error);
       }
     };
-
+    // Llamar a la función para obtener los productos
     getProducts();
   }, []);
 

@@ -1,5 +1,5 @@
 
-
+//News Card
 const NewsCard = () => {
     const news = [
         {

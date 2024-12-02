@@ -1,4 +1,4 @@
-//Formik
+//Formik para manejar el formulario de inicio de sesión
 import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik';
 import { loginInitialValues } from '../../formik/initialValues';
 import { loginValidationSchema } from '../../formik/validationSchema';
@@ -19,9 +19,10 @@ import { Link } from "react-router-dom";
 import { setCurrentUser } from "../../redux/user/userSlice";
 
 const Login = () => {
+
   const [loginError, setLoginError] = useState(''); // Estado para manejar el mensaje de error
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Hook para despachar acciones de Redux
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
   return (
     <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl mt-6 h-screen">
@@ -38,12 +39,14 @@ const Login = () => {
           <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
         </div>
         <Formik
-          initialValues={loginInitialValues}
-          validationSchema={loginValidationSchema}
+          initialValues={loginInitialValues} // Valores iniciales del formulario
+          validationSchema={loginValidationSchema} // Validación de los campos del formulario
+          // Función que se ejecuta al enviar el formulario
           onSubmit={async (values, { setSubmitting }) => {
             try {
-              const user = await loginUser(values.email, values.password);
+              const user = await loginUser(values.email, values.password); // Llamada a la API para iniciar sesión
 
+              // Si la respuesta es exitosa, guardar el usuario en el estado global y redirigir al usuario a la página principal
               if (user) {
                 dispatch(setCurrentUser({
                   ...user,
@@ -52,8 +55,10 @@ const Login = () => {
                 navigate('/');
               }
             } catch (error) {
+              // Si la respuesta es un error, mostrar el mensaje de error
               setLoginError(error.message);
             } finally {
+              // Desactivar el indicador de carga
               setSubmitting(false);
             }
           }}

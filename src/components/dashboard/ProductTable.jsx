@@ -3,7 +3,9 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
+// Componente para mostrar la tabla de productos, recibe los productos, la función para abrir el modal y la función para eliminar un producto como props y retorna la tabla con los productos usando map para mostrarlos en la tabla y botones para editar y eliminar los productos
 const ProductTable = ({ products, handleOpen, handleDelete }) => {
+
   return (
     <TableContainer component={Paper}>
       <Table>

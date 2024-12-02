@@ -1,6 +1,10 @@
+//Boton de ver más de Shadcn
 import { Button } from "@/components/ui/button"
 
+//recibe las props de id, nombre, imagen y descripcion de un producto y las muestra en un card
 const CardProduct = ({ id, nombre, imagen, descripcion }) => {
+
+  //imageUrl es la ruta de la imagen
   const imageUrl = `http://localhost:3000/${imagen}`;
 
   return (

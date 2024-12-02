@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions, Input } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
+// Componente para crear o editar un producto
+// Recibe las siguientes props: open, handleClose, handleSubmit, currentProduct de Dashboard
 const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
+  // Estado para guardar el archivo seleccionado
   const [selectedFile, setSelectedFile] = useState(null);
 
+  // Función para manejar el cambio de archivo
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-
+  
+  // Función para manejar el envío del formulario
+  // Si hay un archivo seleccionado, lo agrega al formulario, y llama a la función handleSubmit 
+  // append la imagen al formData para que se pueda enviar 
   const onSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -19,6 +26,7 @@ const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
   };
 
   return (
+    
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{currentProduct ? 'Editar Producto' : 'Crear Producto'}</DialogTitle>
       <form onSubmit={onSubmit}>

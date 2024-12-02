@@ -1,3 +1,4 @@
+//Codigo para los valores iniciales del formulario
 export const registerInitialValues = {
     email: '',
     password: '',

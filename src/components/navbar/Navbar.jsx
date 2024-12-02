@@ -5,21 +5,24 @@ import { useSelector } from "react-redux";
 import ModalUser from "./ModalUser";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Estado para controlar si el menú está abierto o cerrado
 
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUser = useSelector(state => state.user.currentUser); // Obtenemos el usuario actual
 
+  // Función para abrir o cerrar el menú
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // Función para cerrar el menú si se hace scroll
   const handleScroll = () => {
     if (isOpen) {
       setIsOpen(false);
     }
   };
 
-  useEffect(() => {
+  // Efecto para añadir o quitar el evento de scroll
+  useEffect(() => { 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -55,7 +58,7 @@ function Navbar() {
 
         {/* Hamburger Icon for smaller screens */}
         <div className="md:hidden flex gap-5">
-          {currentUser ? <ModalUser /> : null}
+          {currentUser ? <ModalUser /> : null}  {/* Mostrar el componente ModalUser si el usuario esta autenticado */}
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
