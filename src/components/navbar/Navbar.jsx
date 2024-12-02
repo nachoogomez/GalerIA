@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
@@ -12,6 +12,19 @@ function Navbar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleScroll = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
 
   return (
     <nav className="bg-gray-900 p-4 w-full">
@@ -33,23 +46,16 @@ function Navbar() {
             Contact Us
           </Link>
           {
-
-              currentUser ? <ModalUser /> : <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-
-                Sign In
-
+            currentUser ? <ModalUser /> : <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+              Sign In
               <FaArrowRight />
-
-              </Link>
-
+            </Link>
           }
         </div>
 
-        
-
         {/* Hamburger Icon for smaller screens */}
         <div className="md:hidden flex gap-5">
-        {currentUser ? <ModalUser /> : null}
+          {currentUser ? <ModalUser /> : null}
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
@@ -75,19 +81,19 @@ function Navbar() {
       {/* Dropdown menu for mobile */}
       {isOpen && (
         <div className="md:hidden flex flex-col space-y-2 items-center">
-            <Link to="/about" className="block py-2 px-4 text-white hover:bg-blue-700">
-              About Us
-            </Link>
-            <Link to="/products" className="block py-2 px-4 text-white hover:bg-blue-700">
-              Products
-            </Link>
-            <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
-              Contact Us
-            </Link>
-            {!currentUser ? <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none  hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-              Sign In
-              <FaArrowRight />
-            </Link> : null }
+          <Link to="/about" className="block py-2 px-4 text-white hover:bg-blue-700">
+            About Us
+          </Link>
+          <Link to="/products" className="block py-2 px-4 text-white hover:bg-blue-700">
+            Products
+          </Link>
+          <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
+            Contact Us
+          </Link>
+          {!currentUser ? <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+            Sign In
+            <FaArrowRight />
+          </Link> : null }
         </div>
       )}
     </nav>
@@ -95,5 +101,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
