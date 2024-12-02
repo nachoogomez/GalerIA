@@ -1,5 +1,7 @@
 const CardProduct = ({ id, nombre, imagen, descripcion }) => {
-  const imageUrl = `http://localhost:3000/${imagen}`;         
+
+  const imageUrl = `http://localhost:3000/${imagen}`;  
+         
   return (
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-xl overflow-hidden scroll-px-2"> 
       <img

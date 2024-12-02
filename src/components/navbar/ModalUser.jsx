@@ -9,6 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AvatarIcon from "../ui/AvatarIcon";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../redux/user/userSlice";
@@ -34,7 +35,7 @@ const ModalUser = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <AvatarIcon />
+        <AccountCircleIcon sx={{ color: 'white' }}/>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
