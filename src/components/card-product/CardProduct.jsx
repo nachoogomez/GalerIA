@@ -4,11 +4,13 @@ const CardProduct = ({ id, nombre, imagen, descripcion }) => {
          
   return (
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-xl overflow-hidden scroll-px-2"> 
-      <img
-        className="max-h-60 object-center object-fill"
-        src={imageUrl}
-        alt={id}
-      />
+      <div className="w-full h-60">
+          <img
+            className="w-full h-full object-cover"
+            src={imageUrl}
+            alt={id}
+          />
+       </div>
       <div className="p-6">
         <div className="mb-2">
           <h2 className="text-xl font-bold text-gray-900">{nombre}</h2>

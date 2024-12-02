@@ -19,17 +19,23 @@ const LastProducts = () => {
     getProducts();
   }, []);
 
+  if (!products.length) {
+    return <p>No hay productos disponibles.</p>;
+  }
+
   return (
     <div className='flex flex-wrap flex-col items-center gap-7 mb-8 '>
       <div className='flex flex-wrap gap-4 justify-center'>
         {products.map((product) => (
           <div key={product.id}>
             <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-              <img
-                className="w-full h-full max-h-60 object-center object-fill"
-                src={`http://localhost:3000/${product.imagen}`} 
-                alt={product.nombre}
-              />
+              <div className="w-full h-60">
+                <img
+                  className="w-full h-full object-cover"
+                  src={`http://localhost:3000/${product.imagen}`} 
+                  alt={product.nombre}
+                />
+              </div>
               <div className="p-6">
                 <div className="mb-2">
                   <h2 className="text-xl font-bold text-gray-900">{product.nombre}</h2>
