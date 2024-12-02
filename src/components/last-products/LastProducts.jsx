@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../../axios/products';
+import { Button } from '../ui/button';
+
 
 const LastProducts = () => {
 
@@ -54,9 +56,11 @@ const LastProducts = () => {
         ))}
       </div>
       <div className="mt-4">
-        <Link to="/products" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-          Ver más
-        </Link>
+        <Button>
+          <Link to="/products">
+            Ver más
+          </Link>
+        </Button>
       </div>
     </div>
   );
