@@ -19,8 +19,12 @@ const Products = () => {
   }, []);
 
   if (isLoading) return <Spinner />; 
+  if (!products.length) return <p className="flex items-center text-2xl font-bold h-screen">
+      No hay productos disponibles.
+    </p>;
+
   return (
-    <section className="max-w-screen-xl flex flex-wrap gap-5 justify-items-center mt-6">
+    <section className="max-w-screen-xl flex flex-wrap gap-5 justify-items-center mt-6 px-4">
       {products.map((producto) => (
         <CardProduct {...producto} key={producto.id} />
       ))}

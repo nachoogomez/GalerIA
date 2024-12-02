@@ -91,15 +91,17 @@ const Dashboard = () => {
  
   return (
 
-    <Container>
+    <Container className='flex flex-col items-start gap-4 mt-6'>
       <Typography variant="h4" component="h1" gutterBottom>
         Gestión de Productos
       </Typography>
       <Button variant="contained" color="primary" onClick={() => handleOpen()}>
         Crear Producto
       </Button>
-      <ProductTable products={products} handleOpen={handleOpen} handleDelete={handleDelete} />
-      <ProductForm open={open} handleClose={handleClose} handleSubmit={handleSubmit} currentProduct={currentProduct} />
+      <div className='flex flex-col gap-4'>
+        <ProductTable products={products} handleOpen={handleOpen} handleDelete={handleDelete} />
+        <ProductForm open={open} handleClose={handleClose} handleSubmit={handleSubmit} currentProduct={currentProduct} />
+      </div>
     </Container>
   );
 }

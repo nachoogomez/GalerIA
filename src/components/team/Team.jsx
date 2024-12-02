@@ -4,7 +4,6 @@ const Team = () => {
         { name: ' Eugenia Mora', role: 'Developer' },
         { name: 'Gomez Ignacio', role: 'Developer' },
         { name: 'Jessica Conejero', role: 'Developer' },
-        { name: 'Nicolas Garabito', role: 'Developer' },
       ]
 
   return (

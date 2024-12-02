@@ -24,12 +24,12 @@ const LastProducts = () => {
   }
 
   return (
-    <div className='flex flex-wrap flex-col items-center gap-7 mb-8 '>
-      <div className='flex flex-wrap gap-4 justify-center'>
+    <div className='flex flex-col items-center gap-7 mb-8 px-4'>
+      <div className='flex gap-4 flex-wrap justify-center sm:flex-col md:flex-col lg:flex-col xl:flex-row'>
         {products.map((product) => (
           <div key={product.id}>
             <div className="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="w-full h-60">
+              <div className="w-full h-60 ">
                 <img
                   className="w-full h-full object-cover"
                   src={`http://localhost:3000/${product.imagen}`} 
