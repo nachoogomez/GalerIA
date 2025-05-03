@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
-import { useSelector } from "react-redux";
 import ModalUser from "./ModalUser";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar si el menú está abierto o cerrado
 
-  const currentUser = useSelector(state => state.user.currentUser); // Obtenemos el usuario actual
-
+ 
   // Función para abrir o cerrar el menú
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,6 +27,11 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isOpen]);
+
+  const {loginWithRedirect, isAuthenticated, user} = useAuth0();
+
+  console.log(user);
+  
 
   return (
     <nav className="bg-gray-900 p-4 w-full">
@@ -49,16 +53,16 @@ function Navbar() {
             Contact Us
           </Link>
           {
-            currentUser ? <ModalUser /> : <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-              Sign In
-              <FaArrowRight />
-            </Link>
+            isAuthenticated ? <h1>Hola {user.given_name}</h1> :  <button onClick={() => loginWithRedirect()} className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+            Sign In
+            <FaArrowRight />
+            </button>
           }
         </div>
 
         {/* Hamburger Icon for smaller screens */}
         <div className="md:hidden flex gap-5">
-          {currentUser ? <ModalUser /> : null}  {/* Mostrar el componente ModalUser si el usuario esta autenticado */}
+          {isAuthenticated ? <ModalUser /> : null}  {/* Mostrar el componente ModalUser si el usuario esta autenticado */}
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
@@ -93,10 +97,10 @@ function Navbar() {
           <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
             Contact Us
           </Link>
-          {!currentUser ? <Link to="/login" className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+          {!isAuthenticated ? <button onClick={() => loginWithRedirect()} className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
             Sign In
             <FaArrowRight />
-          </Link> : null }
+          </button> : null }
         </div>
       )}
     </nav>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/v1';
+const API_URL = import.meta.env.API_URL;
 
 /**
  * Crea un nuevo usuario con el email y la contraseña proporcionados.
