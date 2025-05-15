@@ -28,7 +28,7 @@ function Navbar() {
     };
   }, [isOpen]);
 
-  const {loginWithRedirect, isAuthenticated, user} = useAuth0();
+  const {loginWithRedirect, isAuthenticated, user, logout} = useAuth0();
 
   console.log(user);
   
@@ -53,10 +53,22 @@ function Navbar() {
             Contact Us
           </Link>
           {
-            isAuthenticated ? <h1>Hola {user.given_name}</h1> :  <button onClick={() => loginWithRedirect()} className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-            Sign In
-            <FaArrowRight />
-            </button>
+            isAuthenticated ? (
+              <button
+                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                className="bg-red-600 hover:bg-red-800 text-white py-1 px-3 rounded"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => loginWithRedirect()}
+                className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0"
+              >
+                Sign In
+                <FaArrowRight />
+              </button>
+            )
           }
         </div>
 
