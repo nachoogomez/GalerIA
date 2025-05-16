@@ -1,5 +1,14 @@
 
-
+/**
+ * Componente 'ContactForm'
+ * 
+ * Renderiza un formulario de contacto con campos: nombre, email y mensaje
+ * 
+ * No tiene logica para enviar el msj aun, solo muetsra el formulario
+ * 
+ * @component 
+ * @returns {JSX.Element} Formulario de contacto
+ */
 const ContactForm = () => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">

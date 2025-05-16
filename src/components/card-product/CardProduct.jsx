@@ -1,6 +1,14 @@
 //Boton de ver más de Shadcn
 import { Button } from "@/components/ui/button"
 
+/**
+ * Componente que representa una tarjeta de producto
+ * Muestra la imagen, nombre, descripcion y un boton de "See more"
+ * 
+ * @component
+ * @param {Object} props - Propiedades del componente
+ * @returns {JSX.Element} Tarjeta visual del producto
+ */
 //recibe las props de id, nombre, imagen y descripcion de un producto y las muestra en un card
 const CardProduct = ({ id, nombre, imagen, descripcion }) => {
 
@@ -25,7 +33,7 @@ const CardProduct = ({ id, nombre, imagen, descripcion }) => {
         </p>
         <div className="mt-4">
           <Button >
-            Ver más
+            See more
           </Button>
         </div>
       </div>

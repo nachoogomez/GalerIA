@@ -18,6 +18,21 @@ import { Link } from "react-router-dom";
 
 import { setCurrentUser } from "../../redux/user/userSlice";
 
+/**
+ * Componente 'Login'
+ * 
+ * Renderiza el formulario de inicio de sesión con validación usando Formik.
+ * 
+ * Funcionalidades:
+ * - Maneja el estado local para mostrar errores de login.
+ * - Utiliza Formik para controlar el formulario, validación y envío.
+ * - Al enviar, llama a la API para autenticar usuario.
+ * - Si el login es exitoso, actualiza el estado global con Redux y redirige a la página principal.
+ * - Muestra enlaces para registrarse y recuperar contraseña.
+ * 
+ * @component
+ * @returns {JSX.Element} El elemento que representa el formulario de login.
+ */
 const Login = () => {
 
   const [loginError, setLoginError] = useState(''); // Estado para manejar el mensaje de error

@@ -2,6 +2,20 @@ import { Link } from 'react-router-dom';
 import hero from '../../assets/hero.webp';
 import { Button } from '../ui/button';
 
+/**
+ * Componente 'Hero'
+ * 
+ * Renderiza la seccion principal de bienvenida con:
+ * - Titulo de la galeria
+ * - Descripcion
+ * - Boton para abrir la galeria
+ * - Imagen representativa
+ * 
+ * Es un componente estatico y no recibe props
+ * 
+ * @component
+ * @returns {JSX.Element} El elemento Hero
+ */
 const Hero = () => {
   return (
     <section className="text-white body-font bg-gray-900 w-full">

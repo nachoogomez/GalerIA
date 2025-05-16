@@ -4,9 +4,25 @@ import { FaArrowRight } from "react-icons/fa6";
 import ModalUser from "./ModalUser";
 import { useAuth0 } from "@auth0/auth0-react";
 
+/**
+ * Componente 'Navbar'
+ * 
+ * Renderiza la barra de navegación principal de la aplicación.
+ * 
+ * Funcionalidades:
+ * - Muestra el logo con enlace a la página principal.
+ * - Links de navegación: About Us, Products, Contact Us.
+ * - Controla autenticación con Auth0 para mostrar botones de Sign In o Logout.
+ * - En pantallas grandes muestra el menú horizontalmente.
+ * - En pantallas pequeñas muestra un menú hamburguesa desplegable.
+ * - Al hacer scroll, cierra el menú desplegable si está abierto.
+ * - Cuando el usuario está autenticado, muestra el componente ModalUser en móvil.
+ * 
+ * @component
+ * @returns {JSX.Element} El elemento que representa la barra de navegación.
+ */
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar si el menú está abierto o cerrado
-
  
   // Función para abrir o cerrar el menú
   const toggleMenu = () => {

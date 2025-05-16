@@ -3,7 +3,21 @@ import { Link } from 'react-router-dom';
 import { fetchProducts } from '../../axios/products';
 import { Button } from '../ui/button';
 
-
+/**
+ * Componente 'LastProducts'
+ * 
+ * Muestra los 3 ultimos productos obtenidos desde el Backend
+ * * Funcionalidades:
+ * - Obtiene los productos al montar el componente mediante un hook useEffect.
+ * - Ordena los productos por id y selecciona los últimos 3.
+ * - Maneja el estado local para almacenar los productos.
+ * - Si no hay productos, muestra un mensaje indicándolo.
+ * - Renderiza tarjetas con la imagen, nombre y descripción de cada producto.
+ * - Incluye un botón con enlace para ver más productos.
+ * 
+ * @component
+ * @returns {JSX.Element} El elemento LastProducts
+ */
 const LastProducts = () => {
 
   // Hook para guardar los productos en el estado 
@@ -29,7 +43,7 @@ const LastProducts = () => {
   }, []);
 
   if (!products.length) {
-    return <p>No hay productos disponibles.</p>;
+    return <p>No artwork available</p>;
   }
 
   return (
@@ -58,7 +72,7 @@ const LastProducts = () => {
       <div className="mt-4">
         <Button>
           <Link to="/products">
-            Ver más
+            See more
           </Link>
         </Button>
       </div>

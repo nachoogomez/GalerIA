@@ -7,7 +7,18 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
-
+/**
+ * Componente de panel administrativo para la gestión de productos.
+ * Solo accesible por usuarios con roles "SUPER" o "ADMIN".
+ *
+ * Funcionalidades:
+ * - Listado de productos.
+ * - Creación, edición y eliminación de productos.
+ * - Validación de roles mediante token JWT.
+ * - Subida de imágenes mediante formulario.
+ * 
+ * @returns {JSX.Element}
+ */
 const Dashboard = () => {
   const [products, setProducts] = useState([]); //useState para guardar los productos
   const [open, setOpen] = useState(false); //useState para abrir y cerrar el formulario
@@ -103,10 +114,10 @@ const Dashboard = () => {
 
     <Container className='flex flex-col items-start gap-4 mt-6'>
       <Typography variant="h4" component="h1" gutterBottom>
-        Gestión de Productos
+        ArtWork Managment
       </Typography>
       <Button variant="contained" color="primary" onClick={() => handleOpen()}>
-        Crear Producto
+        Add ArtWork
       </Button>
       <div className='flex flex-col gap-4'>
         <ProductTable products={products} handleOpen={handleOpen} handleDelete={handleDelete} />

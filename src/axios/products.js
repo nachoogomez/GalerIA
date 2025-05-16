@@ -2,6 +2,16 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/v1";
 
+/**
+ * Obtiene la lista de productos disponibles
+ * 
+ * Metodo: GET
+ * EndPoint: /producto
+ * Referencia Swagger: GET /producto
+ * 
+ * @returns {Promise<Object>} Lista de productos
+ * @throws {Error} Si ocurre un error al obtener los productos 
+ */
 export const fetchProducts = async () => {
     try {
         const response = await axios.get(`${API_URL}/producto`);
@@ -12,6 +22,18 @@ export const fetchProducts = async () => {
     }
 }
 
+/**
+ * Crea un nuevo producto con los datos proporcionados
+ * 
+ * Metodo: POST
+ * EndPoint: /producto
+ * Referencia Swagger: POST /producto
+ * 
+ * @param {FormData} productData - Datos del producto 
+ * @param {string} token - Token JWT de autenticacion del Super 
+ * @returns {Promise<Object>} Producto creado
+ * @throws {Error} Si ocurre un error al crear el producto
+ */
 export const createProduct = async (productData, token) => {
     try {
         const response = await axios.post(`${API_URL}/producto`, productData, {
@@ -27,6 +49,19 @@ export const createProduct = async (productData, token) => {
     }
 }
 
+/**
+ * Actualiza un producto existente por su ID
+ * 
+ * Metodo: PATCH
+ * EndPoint: /producto/:id
+ * Referencia Swagger: PATCH /producto/{id} 
+ *
+ * @param {string} id - ID del producto a actualizar
+ * @param {FormData} productData - Datos nuevos del producto 
+ * @param {string} token - Token JWT de autenticacion del Super 
+ * @returns {Promise<Object>} Producto actualizado
+ * @throws {Error} Si ocurre un error al actualizar el producto
+ */
 export const updateProduct = async (id, productData, token) => {
     try {
         const response = await axios.patch(`${API_URL}/producto/${id}`, productData, {
@@ -43,6 +78,18 @@ export const updateProduct = async (id, productData, token) => {
     }
 }
 
+/**
+ * Elimina un producto por su ID
+ * 
+ * Metodo: DELETE
+ * EndPoint: /producto/:id
+ * Referencia Swagger: DELETE /producto/{id}
+ * 
+ * @param {string} id - ID del producto a eliminar 
+ * @param {string} token - Token JWT de autenticacion del Super 
+ * @returns {Promise<void>} No retorna datos si la eliminacion es exitosa
+ * @throws {Error} Si ocurre un error al eliminar el producto
+ */
 export const deleteProduct = async (id, token) => {
     try {
         await axios.delete(`${API_URL}/producto/${id}`, {
