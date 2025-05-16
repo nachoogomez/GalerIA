@@ -3,6 +3,16 @@ import CardProduct from "../components/card-product/CardProduct";
 import { fetchProducts } from "@/axios/products";
 import Spinner from "@/components/ui/Spinner";
 
+/**
+ * Página de productos.
+ * 
+ * - Obtiene la lista de productos desde el backend al montar el componente.
+ * - Muestra un spinner mientras se cargan los datos.
+ * - Si no hay productos, muestra un mensaje.
+ * - Renderiza una tarjeta (CardProduct) por cada producto disponible.
+ *
+ * @returns JSX.Element
+ */
 const Products = () => {
   const [products, setProducts] = useState([]); // useState para guardar los productos
   const [isLoading, setIsLoading] = useState(true);  // useState para mostrar el spinner
@@ -24,7 +34,7 @@ const Products = () => {
   if (isLoading) return <Spinner />; 
   // Si no hay productos, muestra un mensaje
   if (!products.length) return <p className="flex items-center text-2xl font-bold h-screen">
-      No hay productos disponibles.
+      No items available
     </p>;
 
   return (

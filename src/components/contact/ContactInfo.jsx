@@ -1,3 +1,12 @@
+/**
+ * Componente 'ContactInfo'
+ * 
+ * Muestra info de contacto estatica incluyendo telefono, email y direccion
+ * Utiliza iconos de 'react-icons/md para representar cada tipo
+ * 
+ * Es informativo
+ */
+
 //Icons
 import { MdPhone, MdMail, MdLocationOn } from 'react-icons/md'
 

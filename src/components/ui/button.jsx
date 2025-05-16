@@ -4,6 +4,19 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Componente reutilizable de botón con variantes de estilo y tamaño.
+ * Basado en Radix UI, Class Variance Authority (cva) y utilidades Tailwind.
+ * 
+ * @component
+ * @param {Object} props - Propiedades del componente
+ * @param {string} [props.variant] - Variante de estilo del botón (default, destructive, outline, secondary, ghost, link)
+ * @param {string} [props.size] - Tamaño del botón (default, sm, lg, icon)
+ * @param {boolean} [props.asChild=false] - Si es true, utiliza el componente hijo como raíz (Slot de Radix)
+ * @param {string} [props.className] - Clases adicionales para estilizar el botón
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @returns {JSX.Element} Botón estilizado con comportamiento personalizado
+ */
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {

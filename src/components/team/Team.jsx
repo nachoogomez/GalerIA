@@ -1,3 +1,10 @@
+/**
+ * Componente que muestra la sección del equipo
+ * Renderiza una lista de miembros con su nombre y rol en un diseño responsivo
+ * 
+ * @component
+ * @returns {JSX.Element} Sección visual con los miembros del equipo
+ */
 const Team = () => {
 
     const teamMembers = [

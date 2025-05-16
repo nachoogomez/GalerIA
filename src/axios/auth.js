@@ -4,6 +4,11 @@ const API_URL = import.meta.env.API_URL;
 
 /**
  * Crea un nuevo usuario con el email y la contraseña proporcionados.
+ * 
+ * Metodo: POST
+ * EndPoint: /user/register
+ * Referencia Swagger: POST /user/register
+ * 
  * @param {string} email - El email del nuevo usuario.
  * @param {string} password - La contraseña del nuevo usuario.
  * @returns {Object} - Los datos del usuario creado.
@@ -23,6 +28,11 @@ export const createUser = async (email, password) => {
 
 /**
  * Inicia sesión con el email y la contraseña proporcionados.
+ * 
+ * Metodo: POST
+ * EndPoint: /auth/login
+ * Referencia Swagger: POST /auth/login
+ * 
  * @param {string} email - El email del usuario.
  * @param {string} password - La contraseña del usuario.
  * @returns {Object} - Los datos del usuario autenticado.

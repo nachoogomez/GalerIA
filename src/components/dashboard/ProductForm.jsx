@@ -2,8 +2,21 @@ import { useState } from 'react';
 import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions, Input } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-// Componente para crear o editar un producto
-// Recibe las siguientes props: open, handleClose, handleSubmit, currentProduct de Dashboard
+/**
+ * Componente 'ProductForm'
+ * 
+ * Es un formulario para crear o editar un producto. Permite ingresar nombre, descripcion y subir una imagen
+ * Se usa MaterialUI. Se empaquetan los datos en un 'FormData' y se envian mediante un 'handleSubmit'
+ * 
+ * @component
+ * @param {boolean} open - Indica si el dialogo esta abierto
+ * @param {Function} handleClose - Funcion que se llama para cerrar el formulario
+ * @param {Function} handleSubmit - Funcion que recibe el FormData con los datos del producto
+ * @param {Object} currentProduct - Objeto con los datos del producto actual, si se esta editando
+ * Los parametros vienen del Dashboard
+ * 
+ * @returns {JSX.Element} Formulario modal para crear o editar un producto
+ */
 const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
   // Estado para guardar el archivo seleccionado
   const [selectedFile, setSelectedFile] = useState(null);
@@ -35,7 +48,7 @@ const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
             autoFocus
             margin="dense"
             name="nombre"
-            label="Nombre"
+            label="Name"
             type="text"
             fullWidth
             defaultValue={currentProduct?.nombre || ''}
@@ -43,7 +56,7 @@ const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
           <TextField
             margin="dense"
             name="descripcion"
-            label="Descripcion"
+            label="Description"
             type="text"
             fullWidth
             defaultValue={currentProduct?.descripcion || ''}
@@ -61,13 +74,13 @@ const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
               startIcon={<CloudUploadIcon />}
               style={{ marginTop: '1rem' }}
             >
-              Subir Imagen
+              Upload Image
             </Button>
           </label>
           {selectedFile && <p>{selectedFile.name}</p>}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleClose}>Cancel</Button>
           <Button type="submit" color="primary">
             {currentProduct ? 'Actualizar' : 'Crear'}
           </Button>

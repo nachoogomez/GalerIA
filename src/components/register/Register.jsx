@@ -1,4 +1,3 @@
-// Code for the Register component
 import { Link } from "react-router-dom";
 import {Formik, Form as FormikForm, Field, ErrorMessage} from 'formik'
 import { registerInitialValues} from '../../formik/initialValues'
@@ -6,7 +5,14 @@ import { registerValidationSchema } from '../../formik/validationSchema'
 import {createUser} from '../../axios/auth'
 import { useNavigate } from 'react-router-dom';
 
-
+/**
+ * Componente de registro de usuario
+ * Renderiza un formulario para crear una nueva cuenta usando Formik y validación con Yup.
+ * Al enviar el formulario, crea el usuario mediante una llamada a la API y redirige a la página de login si es exitoso.
+ *
+ * @component
+ * @returns {JSX.Element} Formulario de registro de usuario
+ */
 const Register = () => {
 
   const navigate = useNavigate();
@@ -32,7 +38,7 @@ const Register = () => {
         <FormikForm  className="space-y-6" >
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Correo electrónico
+              Email
             </label>
             <Field
               id="email"
@@ -46,7 +52,7 @@ const Register = () => {
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Contraseña
+              Password
             <Field
               id="password"
               name="password"
@@ -62,18 +68,17 @@ const Register = () => {
             type="submit"
             className="w-full bg-gray-900 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
           >
-            Registrarse
+            Sign Up
           </button>
         </FormikForm>
         </Formik>
       </div>
       <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
         <p className="text-sm text-gray-600 text-center">
-          ¿Ya tienes una cuenta?{' '}
+          Do you have an account?{' '}
 
           <Link to="/login" className="text-blue-600 hover:underline">
               Sign In
-              
           </Link>
         </p>
       </div>
