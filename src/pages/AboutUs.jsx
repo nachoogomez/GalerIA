@@ -1,6 +1,13 @@
 import Team from "../components/team/Team"
 
-
+/**
+ * Pagina de informacion sobre la empresa
+ * 
+ * Renderiza la seccion de caracteristicas de la empresa
+ * Seguida de la seccion de miembros del equipo
+ * 
+ * @returns {JSX.Element} Componente AboutUs
+ */
 const AboutUs = () => {
   return (
     <section className="py-16">
@@ -27,7 +34,7 @@ const AboutUs = () => {
         </div>
         <Team/>
     </section>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;

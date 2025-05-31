@@ -6,7 +6,6 @@ import storage from 'redux-persist/lib/storage';
 
 /**
  * Configuración de la store de Redux con persistencia.
- *
  * - Combina los reducers (actualmente solo `user`).
  * - Aplica redux-persist para guardar el estado en localStorage.
  * - Desactiva el chequeo de serialización del middleware para evitar errores con redux-persist.

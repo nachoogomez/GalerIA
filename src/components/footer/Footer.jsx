@@ -1,7 +1,6 @@
 /**
- * Componente 'Footer'
+ * Componente 'Footer' que renderiza el pie de pagina de la aplicacion
  * 
- * Renderiza el pie de pagina de la aplicacion
  * Contiene:
  * - Nombre de la pagina
  * - Enlaces de navegacion de: Home, About, Teams, Privacy, Cookies
@@ -10,7 +9,6 @@
  * 
  * Es un componente estatico
  * 
- * @component
  * @returns {JSX.Element} El elemento que representa el Footer
  */
 const Footer = () => {
@@ -19,19 +17,33 @@ const Footer = () => {
       <div className="container px-6 py-8 mx-auto">
         <div className="flex flex-col items-center text-center">
           <a href="#">
-            <p className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">GalerIA</p>
+            <p className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
+              GalerIA
+              </p>
           </a>
           <div className="flex flex-wrap justify-center mt-6 -mx-4">
-              <a href="/#" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Home </a>  
-              <a href="/about" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> About </a>   
-              <a href="/about" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Teams </a>
-              <a href="" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Privacy </a>
-              <a href="" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Cookies </a>
+              <a href="/#" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> 
+                Home 
+              </a>  
+              <a href="/about" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> 
+                About 
+              </a>   
+              <a href="/about" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> 
+                Teams 
+              </a>
+              <a href="" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> 
+                Privacy 
+              </a>
+              <a href="" className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> 
+                Cookies 
+              </a>
           </div>
         </div>
         <div className="w-full max-w-3xl mt-6 border-gray-300 dark:border-gray-600" />
             <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-                <p className="text-sm text-gray-500 dark:text-gray-300">© Copyright 2021. All Rights Reserved.</p>
+                <p className="text-sm text-gray-500 dark:text-gray-300">
+                  © Copyright 2021. All Rights Reserved.
+                </p>
                 <div className="flex -mx-2">
                     <a href="https://www.facebook.com/share/1F3KWRqu8b/" className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Facebook">
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +64,7 @@ const Footer = () => {
               </div>
           </div>
       </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

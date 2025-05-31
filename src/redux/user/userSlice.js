@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 /**
- * Se usa Resux Slice para manejar elestado del usuario actual
- * 
- * @property {Object[null]} currentUser - Usuario autenticado,o null sino hay sesion iniciada
- * 
- * @function setCurrentUser - guarda el usuario autenticado en el estado
- * 
- * @function clearCurrentUser - Elimina el usuario del estado (logout)
+ * Slice de Redux para gestionar el estado del usuario actual
+ *  
  */
 // Estado inicial
 const INITIAL_STATE = {

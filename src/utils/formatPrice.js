@@ -1,5 +1,8 @@
 /**
  * Formatea un número como precio en dólares estadounidenses.
+ * 
+ * @function formatPrice
+ * 
  * @param {number} price - El valor numérico a formatear.
  * @returns {string} El precio formateado como cadena (ej. "$1,000.00").
  */

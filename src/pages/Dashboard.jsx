@@ -17,7 +17,7 @@ import { jwtDecode } from "jwt-decode";
  * - Validación de roles mediante token JWT.
  * - Subida de imágenes mediante formulario.
  * 
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Panel de administración de productos
  */
 const Dashboard = () => {
   const [products, setProducts] = useState([]); //useState para guardar los productos
@@ -36,7 +36,13 @@ const Dashboard = () => {
     fetchProductsData();
   }, []);
 
-  // Función para obtener los productos
+  /**
+   * Función para obtener los productos
+   * 
+   * @async
+   * @function fetchProductsData
+   * @throws {Error} Si ocurre un error al obtener los productos
+   */
   const fetchProductsData = async () => {
     try {
       const data = await fetchProducts();
@@ -46,18 +52,34 @@ const Dashboard = () => {
     }
   };
 
-  // Funciones para abrir y cerrar el formulario
+  /**
+   * Función para abrir el formulario
+   * 
+   * @function handleOpen
+   * @param {Object | null} product - Producto a editar, si es null se abre el formulario para crear un nuevo producto
+   */
   const handleOpen = (product = null) => {
     setCurrentProduct(product);
     setOpen(true);
   };
 
-  // Función para cerrar el formulario
+  /**
+   * Función para cerrar el formulario
+   * 
+   * @function handleClose
+   */
   const handleClose = () => {
     setCurrentProduct(null);
     setOpen(false);
   };
 
+  /**
+   * Enviá el formulario
+   * 
+   * @async
+   * @function handleSubmit
+   * @param {FormData} formData - Datos del producto ingresados en el formulario
+   */
   // Función para enviar el formulario
   const handleSubmit = async (formData) => {
     try {
@@ -87,7 +109,14 @@ const Dashboard = () => {
     }
   };
 
-  // Función para eliminar un producto
+  /**
+   * Función para eliminar un producto
+   * 
+   * @async
+   * @function handleDelete
+   * @param {string} id - ID del producto a eliminar
+   * @throws {Error} Si ocurre un error al eliminar el producto
+   */
   const handleDelete = async (id) => {
     try {
       await deleteProduct(id, token); // Se elimina el producto de la API con el id y el token
@@ -125,7 +154,6 @@ const Dashboard = () => {
       </div>
     </Container>
   );
-}
+};
 
 export default Dashboard;
-

@@ -2,6 +2,7 @@ import jwtDecode from "jwt-decode";
 
 /**
  * Decodifica un token JWT.
+ * 
  * @param {string} token - El token JWT a decodificar.
  * @returns {object|null} El contenido decodificado del token o null si es inválido.
  */

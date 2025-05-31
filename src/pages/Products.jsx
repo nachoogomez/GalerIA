@@ -11,7 +11,7 @@ import Spinner from "@/components/ui/Spinner";
  * - Si no hay productos, muestra un mensaje.
  * - Renderiza una tarjeta (CardProduct) por cada producto disponible.
  *
- * @returns JSX.Element
+ * @returns {JSX.Element} Página de productos
  */
 const Products = () => {
   const [products, setProducts] = useState([]); // useState para guardar los productos

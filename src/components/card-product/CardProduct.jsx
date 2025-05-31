@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button"
 
 /**
  * Componente que representa una tarjeta de producto
+ * 
  * Muestra la imagen, nombre, descripcion y un boton de "See more"
  * 
- * @component
  * @param {Object} props - Propiedades del componente
+ * @param {string} props.id - Id del producto
+ * @param {string} props.nombre - Nombre del producto
+ * @param {string} props.imagen - Ruta relativa de la imagen del producto
+ * @param {string} props.descripcion - Descripcion del producto
  * @returns {JSX.Element} Tarjeta visual del producto
  */
-//recibe las props de id, nombre, imagen y descripcion de un producto y las muestra en un card
 const CardProduct = ({ id, nombre, imagen, descripcion }) => {
 
   //imageUrl es la ruta de la imagen
@@ -26,7 +29,9 @@ const CardProduct = ({ id, nombre, imagen, descripcion }) => {
       </div>
       <div className="p-6">
         <div className="mb-2">
-          <h2 className="text-xl font-bold text-gray-900">{nombre}</h2>
+          <h2 className="text-xl font-bold text-gray-900">
+            {nombre}
+          </h2>
         </div>
         <p className="text-sm text-gray-700 mb-4">
           {descripcion}
