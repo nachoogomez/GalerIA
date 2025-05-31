@@ -4,9 +4,10 @@ import News from '../components/news/News'
 
 /**
  * Componente de la página principal (Home).
+ * 
  * Renderiza la sección Hero, noticias y los últimos productos destacados.
  *
- * @returns JSX.Element
+ * @returns {JSX.Element} Página de inicio.
  */
 const Home = () => {
   return (
@@ -18,8 +19,7 @@ const Home = () => {
       </h1>
       <LastProducts/>
     </>
-    
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

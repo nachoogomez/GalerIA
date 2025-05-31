@@ -4,6 +4,21 @@ import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Componente `DropdownMenu`
+ * 
+ * Conjunto de componentes reutilizables y estilizados, basados en Radix UI.
+ * Incluye submenu, items seleccionables, etiquetas, iconos, checkbox, radios,atajos de teclados y demas
+ * 
+ * Utiliza:
+ * - Radix UI para crear un menu desplegable
+ * - Tailwind CSS para estilizar los componentes
+ * - Lucide para iconos
+ * - `cn`para composicion de clases
+ * 
+ * @module DropdownMenu
+ */
+
 const DropdownMenu = DropdownMenuPrimitive.Root
 
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
@@ -16,6 +31,17 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub
 
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
+/**
+ * Componente `DropdownMenuSubTrigger`
+ * 
+ * Dispara el desplegable de submenú
+ * 
+ * @param {Object} props - Propiedades del componente
+ * @param {boolean} [props.inset=false] - Si es true, agrega un padding a la izquierda
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @returns {JSX.Element} Componente `DropdownMenuSubTrigger`
+*/
 const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
@@ -32,6 +58,14 @@ const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, .
 DropdownMenuSubTrigger.displayName =
   DropdownMenuPrimitive.SubTrigger.displayName
 
+/**
+ * Componente `DropdownMenuSubContent`, muestra el contenido visual del submenu
+ * 
+ * @param {Object} props - Propiedades del componente
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @returns {JSX.Element} Componente `DropdownMenuSubContent`
+ */
 const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
     ref={ref}
@@ -44,6 +78,15 @@ const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) =
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName
 
+/**
+ * Componente `DropdownMenuContent`, muestra el contenido visual del menu desplegable
+ * 
+ * @param {Object} props - Propiedades del componente
+ * @param {number} [props.sideOffset=4] - Desplazamiento lateral del menu desplegable
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @returns {JSX.Element} Componente `DropdownMenuContent`
+ */
 const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
@@ -59,6 +102,17 @@ const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...pr
 ))
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
+/**
+ * Componente `DropdownMenuItem`
+ * 
+ * Elemento de menu interactivo.
+ * 
+ * @param {Object} props - Propiedades del componente
+ * @param {boolean} [props.inset=false] - Si es true, agrega un padding a la izquierda
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @returns {JSX.Element} Elemento individual del menu desplegable personalizado.
+ */
 const DropdownMenuItem = React.forwardRef(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
     ref={ref}
@@ -71,6 +125,17 @@ const DropdownMenuItem = React.forwardRef(({ className, inset, ...props }, ref) 
 ))
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
+/**
+ * Componente `DropdownMenuCheckboxItem`
+ * 
+ * Elemento del menu con funcionalidad de checkbox.
+ * 
+ * @param {boolean} [props.checked] - Estado del checkbox. 
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @param {React.ReactNode} props.children - Contenido del item
+ * @returns {JSX.Element} Elemento individual del menu desplegable personalizado con funcionalidad de checkbox.
+ */
 const DropdownMenuCheckboxItem = React.forwardRef(({ className, children, checked, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
@@ -91,6 +156,16 @@ const DropdownMenuCheckboxItem = React.forwardRef(({ className, children, checke
 DropdownMenuCheckboxItem.displayName =
   DropdownMenuPrimitive.CheckboxItem.displayName
 
+/**
+ * Componente `DropdownMenuRadioItem`
+ * 
+ * Elemento del menu con funcionalidad de radio.
+ * 
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @param {React.Ref} ref - Referencia al elemento del DOM
+ * @param {React.ReactNode} props.children - Contenido del item
+ * @returns {JSX.Element} Elemento individual del menu desplegable personalizado con funcionalidad de radio.
+ */
 const DropdownMenuRadioItem = React.forwardRef(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
@@ -109,6 +184,15 @@ const DropdownMenuRadioItem = React.forwardRef(({ className, children, ...props 
 ))
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
 
+/**
+ * Componente `DropdownMenuLabel`
+ * 
+ * Etiqueta de sección en el menu desplegable.
+ * 
+ * @param {boolean} [props.inset=false] - Si es true, agrega un padding a la izquierda
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @returns {JSX.Element} Elemento de etiqueta en el menu desplegable.
+ */
 const DropdownMenuLabel = React.forwardRef(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
     ref={ref}
@@ -117,6 +201,14 @@ const DropdownMenuLabel = React.forwardRef(({ className, inset, ...props }, ref)
 ))
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
 
+/**
+ * Componente `DropdownMenuSeparator`
+ * 
+ * Linea de separacion en el menu desplegable.
+ * 
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente
+ * @returns {JSX.Element} Elemento de separador en el menu desplegable.
+ */
 const DropdownMenuSeparator = React.forwardRef(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
@@ -125,6 +217,14 @@ const DropdownMenuSeparator = React.forwardRef(({ className, ...props }, ref) =>
 ))
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
+/**
+ * Componente `DropdownMenuShortcut`
+ * 
+ * Elemento de acceso directo en el menu desplegable.
+ *
+ * @param {string} [props.className] - Clases CSS adicionales para estilizar el componente 
+ * @returns {JSX.Element} Elemento de acceso directo en el menu desplegable.
+ */
 const DropdownMenuShortcut = ({
   className,
   ...props

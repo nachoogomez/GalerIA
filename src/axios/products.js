@@ -9,6 +9,8 @@ const API_URL = "http://localhost:3000/api/v1";
  * EndPoint: /producto
  * Referencia Swagger: GET /producto
  * 
+ * @async
+ * @function fetchProducts
  * @returns {Promise<Object>} Lista de productos
  * @throws {Error} Si ocurre un error al obtener los productos 
  */
@@ -29,6 +31,8 @@ export const fetchProducts = async () => {
  * EndPoint: /producto
  * Referencia Swagger: POST /producto
  * 
+ * @async
+ * @function createProduct
  * @param {FormData} productData - Datos del producto 
  * @param {string} token - Token JWT de autenticacion del Super 
  * @returns {Promise<Object>} Producto creado
@@ -56,6 +60,8 @@ export const createProduct = async (productData, token) => {
  * EndPoint: /producto/:id
  * Referencia Swagger: PATCH /producto/{id} 
  *
+ * @async
+ * @function updateProduct
  * @param {string} id - ID del producto a actualizar
  * @param {FormData} productData - Datos nuevos del producto 
  * @param {string} token - Token JWT de autenticacion del Super 
@@ -85,6 +91,8 @@ export const updateProduct = async (id, productData, token) => {
  * EndPoint: /producto/:id
  * Referencia Swagger: DELETE /producto/{id}
  * 
+ * @async
+ * @function deleteProduct
  * @param {string} id - ID del producto a eliminar 
  * @param {string} token - Token JWT de autenticacion del Super 
  * @returns {Promise<void>} No retorna datos si la eliminacion es exitosa

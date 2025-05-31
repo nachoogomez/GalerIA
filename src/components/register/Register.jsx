@@ -6,11 +6,11 @@ import {createUser} from '../../axios/auth'
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Componente de registro de usuario
- * Renderiza un formulario para crear una nueva cuenta usando Formik y validación con Yup.
- * Al enviar el formulario, crea el usuario mediante una llamada a la API y redirige a la página de login si es exitoso.
+ * Componente `Register` que renderiza un formulario para crear una nueva cuenta usando Formik y validación con Yup.
+ * 
+ * Al enviar el formulario, crea el usuario mediante una llamada a la API 
+ * y redirige a la página de login si es exitoso.
  *
- * @component
  * @returns {JSX.Element} Formulario de registro de usuario
  */
 const Register = () => {
@@ -34,7 +34,7 @@ const Register = () => {
             navigate("/login");
           }
          }} 
-      >
+        >
         <FormikForm  className="space-y-6" >
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -53,6 +53,7 @@ const Register = () => {
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
+            </label>
             <Field
               id="password"
               name="password"
@@ -62,7 +63,7 @@ const Register = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
-            </label>
+            
           </div>
           <button
             type="submit"
@@ -76,9 +77,8 @@ const Register = () => {
       <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
         <p className="text-sm text-gray-600 text-center">
           Do you have an account?{' '}
-
           <Link to="/login" className="text-blue-600 hover:underline">
-              Sign In
+            Sign In
           </Link>
         </p>
       </div>
@@ -86,4 +86,4 @@ const Register = () => {
   );
 };
 
-export default Register
+export default Register;

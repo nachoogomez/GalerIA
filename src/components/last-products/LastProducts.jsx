@@ -4,10 +4,9 @@ import { fetchProducts } from '../../axios/products';
 import { Button } from '../ui/button';
 
 /**
- * Componente 'LastProducts'
+ * Componente 'LastProducts' que muestra los 3 ultimos productos obtenidos desde el Backend
  * 
- * Muestra los 3 ultimos productos obtenidos desde el Backend
- * * Funcionalidades:
+ * Funcionalidades:
  * - Obtiene los productos al montar el componente mediante un hook useEffect.
  * - Ordena los productos por id y selecciona los últimos 3.
  * - Maneja el estado local para almacenar los productos.
@@ -15,17 +14,27 @@ import { Button } from '../ui/button';
  * - Renderiza tarjetas con la imagen, nombre y descripción de cada producto.
  * - Incluye un botón con enlace para ver más productos.
  * 
- * @component
  * @returns {JSX.Element} El elemento LastProducts
  */
 const LastProducts = () => {
 
-  // Hook para guardar los productos en el estado 
   const [products, setProducts] = useState([]);
 
-  // Hook para obtener los productos al cargar el componente 
+  /**
+   * Hook de efecto que se ejecuta al montar el componente
+   * Llama a la función para obtener los productos desde el backend
+   */
   useEffect(() => {
-    // Función para obtener los productos
+    /**
+     * Obtiene los productos desde el backend
+     * Los ordena por id de forma descendente 
+     * Selecciona los 3 ultimos
+     * Guarda los productos en el estado
+     * 
+     * @async
+     * @function getProducts
+     * @throws {Error} Si ocurre un error al obtener los productos
+     */
     const getProducts = async () => {
       try {
         const fetchedProducts = await fetchProducts();

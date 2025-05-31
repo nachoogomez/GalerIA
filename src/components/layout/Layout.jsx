@@ -11,19 +11,22 @@ import {useEffect} from 'react';
  * - Al cambiar la ruta, hace scroll automático al inicio de la página.
  * - Renderiza sus elementos hijos dentro de un contenedor principal con estilos.
  * 
- * @component
- * @param {Object} props
+ * @param {Object} props - Propiedades del componente
  * @param {React.ReactNode} props.children - Contenido que se renderiza dentro del layout.
  * @returns {JSX.Element} El elemento que representa el layout principal de la aplicación.
  */
 const Layout = ({ children }) => {
     const { pathname } = useLocation();
     
+    /**
+     * Hook de efecto que se ejecuta al cambiar la ruta
+     * Al cambiar la ruta, hace scroll automático al inicio de la página
+     */
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
     
     return <main className='min-h-screen flex flex-col items-center'>{children}</main>;
-  }
+  };
   
-  export default Layout
+  export default Layout;

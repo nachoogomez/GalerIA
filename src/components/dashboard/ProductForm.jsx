@@ -5,15 +5,14 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 /**
  * Componente 'ProductForm'
  * 
- * Es un formulario para crear o editar un producto. Permite ingresar nombre, descripcion y subir una imagen
- * Se usa MaterialUI. Se empaquetan los datos en un 'FormData' y se envian mediante un 'handleSubmit'
+ * Renderiza un formulario modal para crear o editar un producto. 
+ * Permite ingresar nombre, descripcion y subir una imagen
+ * Usa MaterialUI. Se empaquetan los datos en un 'FormData' y se envian mediante un 'handleSubmit'
  * 
- * @component
  * @param {boolean} open - Indica si el dialogo esta abierto
  * @param {Function} handleClose - Funcion que se llama para cerrar el formulario
  * @param {Function} handleSubmit - Funcion que recibe el FormData con los datos del producto
  * @param {Object} currentProduct - Objeto con los datos del producto actual, si se esta editando
- * Los parametros vienen del Dashboard
  * 
  * @returns {JSX.Element} Formulario modal para crear o editar un producto
  */
@@ -91,4 +90,3 @@ const ProductForm = ({ open, handleClose, handleSubmit, currentProduct }) => {
 };
 
 export default ProductForm;
-

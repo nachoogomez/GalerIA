@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils"
  * Componente reutilizable de botón con variantes de estilo y tamaño.
  * Basado en Radix UI, Class Variance Authority (cva) y utilidades Tailwind.
  * 
- * @component
  * @param {Object} props - Propiedades del componente
  * @param {string} [props.variant] - Variante de estilo del botón (default, destructive, outline, secondary, ghost, link)
  * @param {string} [props.size] - Tamaño del botón (default, sm, lg, icon)

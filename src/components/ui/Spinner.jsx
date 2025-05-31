@@ -1,5 +1,10 @@
-
-
+/**
+ * Componente de spinner de carga
+ * 
+ * Muestra un spinner de carga en la pantalla
+ * 
+ * @returns {JSX.Element} Spinner de carga
+ */
 const Spinner = () => {
 return (
     <div className="grid min-h-[80px] w-20 place-items-center overflow-x-scroll rounded-lg p-0 lg:overflow-visible">

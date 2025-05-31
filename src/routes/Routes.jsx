@@ -7,7 +7,13 @@ import AboutUs from '../pages/AboutUs';
 import Register from '../components/register/Register';
 import Dashboard from '@/pages/Dashboard';
 
-//Rutas
+/**
+ * Función para renderizar las rutas
+ * 
+ * @function Routes
+ * 
+ * @returns {JSX.Element} Rutas
+ */
 function Routes(){
     return(
         <ReactDomRoutes>

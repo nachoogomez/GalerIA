@@ -1,12 +1,10 @@
-
 /**
  * Componente 'ContactForm'
  * 
  * Renderiza un formulario de contacto con campos: nombre, email y mensaje
  * 
- * No tiene logica para enviar el msj aun, solo muetsra el formulario
+ * No tiene logica para enviar el msj aun, solo muestra el formulario
  * 
- * @component 
  * @returns {JSX.Element} Formulario de contacto
  */
 const ContactForm = () => {

@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import  { Products, TotalProducts } from '../../data/Products';
 /**
- * productsSlice.js
+ * Slice de Redux para manejar el estado global de productos
  *
- * Este slice de Redux se encarga de manejar el estado global relacionado con los productos.
  * Utiliza Redux Toolkit para simplificar la creación de reducers y acciones.
  *
  * Estado inicial:

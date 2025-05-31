@@ -9,9 +9,11 @@ const API_URL = import.meta.env.API_URL;
  * EndPoint: /user/register
  * Referencia Swagger: POST /user/register
  * 
+ * @async
+ * @function createUser
  * @param {string} email - El email del nuevo usuario.
  * @param {string} password - La contraseña del nuevo usuario.
- * @returns {Object} - Los datos del usuario creado.
+ * @returns {Promise<Object>} - Los datos del usuario creado.
  * @throws {Error} - Si ocurre un error al crear el usuario.
  */
 export const createUser = async (email, password) => {
@@ -23,6 +25,7 @@ export const createUser = async (email, password) => {
         return response.data;
     } catch (error) {
         console.log(error);
+        throw new Error ('Error al crear el usuario');
     }
 }
 
@@ -33,9 +36,11 @@ export const createUser = async (email, password) => {
  * EndPoint: /auth/login
  * Referencia Swagger: POST /auth/login
  * 
+ * @async
+ * @function loginUser
  * @param {string} email - El email del usuario.
  * @param {string} password - La contraseña del usuario.
- * @returns {Object} - Los datos del usuario autenticado.
+ * @returns {Promise<Object>} - Los datos del usuario autenticado.
  * @throws {Error} - Si el email o la contraseña son incorrectos.
  */
 export const loginUser = async (email, password) => {
@@ -50,4 +55,3 @@ export const loginUser = async (email, password) => {
       throw new Error('Email or password incorrect');
     }
   };
-

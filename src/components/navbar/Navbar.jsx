@@ -5,9 +5,7 @@ import ModalUser from "./ModalUser";
 import { useAuth0 } from "@auth0/auth0-react";
 
 /**
- * Componente 'Navbar'
- * 
- * Renderiza la barra de navegación principal de la aplicación.
+ * Componente 'Navbar' que renderiza la barra de navegación principal de la aplicación.
  * 
  * Funcionalidades:
  * - Muestra el logo con enlace a la página principal.
@@ -17,26 +15,31 @@ import { useAuth0 } from "@auth0/auth0-react";
  * - En pantallas pequeñas muestra un menú hamburguesa desplegable.
  * - Al hacer scroll, cierra el menú desplegable si está abierto.
  * - Cuando el usuario está autenticado, muestra el componente ModalUser en móvil.
- * 
- * @component
+ *
  * @returns {JSX.Element} El elemento que representa la barra de navegación.
  */
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar si el menú está abierto o cerrado
  
-  // Función para abrir o cerrar el menú
+  /**
+   * Función para abrir o cerrar el menú hamburguesa
+   */
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Función para cerrar el menú si se hace scroll
+  /**
+   * Función para cerrar el menú si se hace scroll
+   */
   const handleScroll = () => {
     if (isOpen) {
       setIsOpen(false);
     }
   };
 
-  // Efecto para añadir o quitar el evento de scroll
+  /**
+   * Efecto para añadir o quitar el evento de scroll
+   */
   useEffect(() => { 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -44,11 +47,13 @@ function Navbar() {
     };
   }, [isOpen]);
 
+  /**
+   * Hook para manejar la autenticación con Auth0
+   */
   const {loginWithRedirect, isAuthenticated, user, logout} = useAuth0();
 
-  console.log(user);
+  //console.log(user);
   
-
   return (
     <nav className="bg-gray-900 p-4 w-full">
       <div className="container mx-auto flex items-center justify-between">
@@ -88,7 +93,7 @@ function Navbar() {
           }
         </div>
 
-        {/* Hamburger Icon for smaller screens */}
+        {/* Icono hamburguesa para pantallas pequeñas */}
         <div className="md:hidden flex gap-5">
           {isAuthenticated ? <ModalUser /> : null}  {/* Mostrar el componente ModalUser si el usuario esta autenticado */}
           <button
@@ -113,7 +118,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Dropdown menu for mobile */}
+      {/* Menu desplegable para moviles */}
       {isOpen && (
         <div className="md:hidden flex flex-col space-y-2 items-center">
           <Link to="/about" className="block py-2 px-4 text-white hover:bg-blue-700">
