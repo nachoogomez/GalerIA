@@ -1,42 +1,46 @@
-/**
- * Componente 'NewsCard' que representa una lista de noticias breves
- * 
- * Cada tarjeta tiene:
- * - Categoría y título enlazado
- * 
- * @returns {JSX.Element} Lista de tarjetas de noticias
- */
-const NewsCard = () => {
-    const news = [
-        {
-          title: "Lost work by Leonardo da Vinci",
-          category: "Digital Art",
-          description: "Una innovadora muestra online utiliza inteligencia artificial para recrear las piezas perdidas.",
-          url: "https://www.bbc.com/mundo/noticias/2012/12/121202_cultura_obra_leonardo_da_vinci_bd"
-        },
-        {
-          title: "New urban mural in Barcelona pays tribute to women in art",
-          category: "Urban Art",
-          description: "El colectivo de artistas locales 'Pintoras del Asfalto' ha creado un mural en Barcelona que celebra la contribución de las mujeres al mundo del arte, inspirado en iconos como Frida Kahlo y Yayoi Kusama.",
-          url: "https://www.elperiodico.com/es/sociedad/20241125/grafitti-reinvidicar-dia-internacional-violencia-machista-barcelona-dv-112019889"
-        },
-        {
-          title: "Unpublished Picasso painting discovered in a Paris basement",
-          category: "Art History",
-          description: "Expertos en arte han encontrado una obra desconocida de Pablo Picasso escondida en el sótano de una antigua galería de París, la cual podría cambiar la interpretación de su período azul.",
-          url: "https://www.pagina12.com.ar/772261-un-tesoro-en-el-sotano-la-increible-historia-del-descubrimie"
-        }
-      ];
+import React from 'react';
 
+/**
+ * Componente 'NewsCard' que representa una lista de eventos breves obtenidos de una API.
+ *
+ * Cada tarjeta muestra:
+ * - Título enlazado
+ * - Fecha del evento
+ * - Breve descripción
+ *
+ * @param {object} props - Las props del componente.
+ * @param {Array<Object>} props.events - Array de objetos de eventos a mostrar.
+ * @returns {JSX.Element} Lista de tarjetas de noticias/eventos.
+ */
+const NewsCard = ({ events = [] }) => {
     return (
       <>
-        {news.map((item, index) => (
-          <div key={index}>
-            <h3 className="text-blue-800 capitalize">{item.category}</h3>
-              <a href= {item.url} className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500  ">
+        {events.map((item, index) => (
+          <div key={item.id || index}>
+            {/* Título enlazado al evento */}
+            <a 
+                href={item.web_url} 
+                className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500" 
+                target="_blank" 
+                rel="noopener noreferrer"
+            >
                 {item.title}
-              </a>
-          </div>  
+            </a>
+
+            {/* Fecha del evento */}
+            {item.start_date && (
+                <p className="text-gray-500 text-sm mt-1">
+                    Fecha: {new Date(item.start_date).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+            )}
+            
+            {/* Breve descripción del evento */}
+            {item.description && (
+                <p className="text-gray-600 text-sm mt-2 truncate">
+                    {item.description.replace(/<\/?[^>]+(>|$)/g, "")}
+                </p>
+            )}
+          </div>  
         ))}
       </>
     );

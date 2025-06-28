@@ -1,47 +1,57 @@
-import NewsCard from "./NewsCard"
+import NewsCard from "./NewsCard";
+import useFetchEvents from "../../hooks/useFetchEvents";
 
 /**
- * Componente que muestra la seccion de ultimas noticias de arte
- * 
+ * Componente que muestra la sección de últimas noticias de arte.
+ *
  * Incluye:
- * - título 
- * - imagen destacada con texto 
- * - una lista de noticias en tarjetas
- * 
- * @returns {JSX.Element} Seccion visual con noticias y contenido relacionado al arte
+ * - Título
+ * - Imagen destacada con texto (estática)
+ * - Una lista de eventos recientes en tarjetas (dinámicas desde la API)
+ *
+ * @returns {JSX.Element} Sección visual con noticias y contenido relacionado al arte.
  */
 const News = () => {
-      
-  return (
-    <section >
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900 text-center mt-10" >
-            Latest Art News
-        </h1>
-        <div className="container px-6 py-10 mx-auto">
-            <div className="lg:flex lg:-mx-6">
-                {/*Imagen destacada*/}
-                <div className="lg:w-3/4 lg:px-6">
-                    <img 
-                        className="object-cover object-center w-full h-80 xl:h-[28rem] rounded-xl" 
-                        src="https://images.pexels.com/photos/3779191/pexels-photo-3779191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                        alt=""
-                    />
-                   <div>
-                        <h1 className="max-w-lg mt-4 text-2xl font-semibold leading-tight text-black-800 ">
-                            {/*What do you want to know about art*/}
-                        </h1>
+    // Se usa para obtener los datos de la API.
+    const { data: events, loading, error } = useFetchEvents();
+
+    // Si la información está cargando o hay un error, muestra un mensaje.
+    if (loading) {
+        return <p className="text-white text-center mt-10">Cargando eventos...</p>;
+    }
+
+    if (error) {
+        return <p className="text-red-500 text-center mt-10">Error al cargar los eventos: {error}</p>;
+    }
+
+    return (
+        <section>
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900 text-center mt-10">
+                Latest Art News
+            </h1>
+            <div className="container px-6 py-10 mx-auto">
+                <div className="lg:flex lg:-mx-6">
+                    {/* Imagen destacada*/}
+                    <div className="lg:w-3/4 lg:px-6">
+                        <img 
+                            className="object-cover object-center w-full h-80 xl:h-[28rem] rounded-xl" 
+                            src="https://images.pexels.com/photos/3779191/pexels-photo-3779191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                            alt="Imagen destacada de arte"
+                        />
+                    </div>
+
+                    {/* Lista de tarjetas de noticias */}
+                    <div className="mt-8 lg:w-1/4 lg:mt-4 lg:px-6 flex gap-10 flex-col">
+                        {events.length > 0 ? (
+                            <NewsCard events={events} /> 
+                        ) : (
+                            <p className="text-white">No se encontraron eventos recientes.</p>
+                        )}
                     </div>
                 </div>
-
-                {/* Lista de tarjetas de noticias */}
-                <div className="mt-8 lg:w-1/4 lg:mt-4 lg:px-6 flex gap-10 flex-col" >
-                    <NewsCard/>
-                </div>
-               
             </div>
-        </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default News;
