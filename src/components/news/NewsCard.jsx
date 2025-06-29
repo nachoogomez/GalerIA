@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Componente 'NewsCard' que representa una lista de eventos breves obtenidos de una API.
  *
@@ -12,25 +10,27 @@ import React from 'react';
  * @param {Array<Object>} props.events - Array de objetos de eventos a mostrar.
  * @returns {JSX.Element} Lista de tarjetas de noticias/eventos.
  */
+
 const NewsCard = ({ events = [] }) => {
     return (
       <>
         {events.map((item, index) => (
           <div key={item.id || index}>
+
             {/* Título enlazado al evento */}
             <a 
-                href={item.web_url} 
-                className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              href={`https://www.artic.edu/events/${item.id}`}
+              className="block mt-2 font-medium text-black-700 hover:underline hover:text-gray-500" 
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-                {item.title}
+              {item.title}
             </a>
 
             {/* Fecha del evento */}
             {item.start_date && (
                 <p className="text-gray-500 text-sm mt-1">
-                    Fecha: {new Date(item.start_date).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    Date: {new Date(item.start_date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
             )}
             
@@ -40,7 +40,7 @@ const NewsCard = ({ events = [] }) => {
                     {item.description.replace(/<\/?[^>]+(>|$)/g, "")}
                 </p>
             )}
-          </div>  
+          </div>
         ))}
       </>
     );

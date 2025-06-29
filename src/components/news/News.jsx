@@ -2,14 +2,16 @@ import NewsCard from "./NewsCard";
 import useFetchEvents from "../../hooks/useFetchEvents";
 
 /**
- * Componente que muestra la sección de últimas noticias de arte.
+ * Componente ´News` 
+ * 
+ * Muestra la sección de últimas noticias de arte.
  *
  * Incluye:
  * - Título
  * - Imagen destacada con texto (estática)
  * - Una lista de eventos recientes en tarjetas (dinámicas desde la API)
  *
- * @returns {JSX.Element} Sección visual con noticias y contenido relacionado al arte.
+ * @returns {JSX.Element} Sección visual con noticias de arte obtenidas de la API.
  */
 const News = () => {
     // Se usa para obtener los datos de la API.
@@ -25,6 +27,7 @@ const News = () => {
     }
 
     return (
+        // Estructura de la sección de noticias
         <section>
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900 text-center mt-10">
                 Latest Art News

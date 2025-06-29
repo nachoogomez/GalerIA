@@ -1,5 +1,15 @@
 import { useState, useEffect } from 'react';
 
+/**
+ * Hook personalizado para obtener los eventos mas recientes de la API de Art Institute of Chicago.
+ * 
+ * Realiza una peticion unica al carger el componente y devuelve los eventos obtenidos.
+ * *
+ *  @returns {Object} Un objeto que contiene los datos del hook:
+ *  @returns {Array<Object>} data - Array de eventos obtenidos.
+ *  @returns {boolean} loading - Indica si se están cargando los datos.
+ *  @returns {string|null} error - Mensaje de error en caso de fallo.
+ */
 const useFetchEvents = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +19,6 @@ const useFetchEvents = () => {
     const fetchLatestEvents = async () => {
       setLoading(true);
       setError(null);
-      
       
       const API_URL = 'https://api.artic.edu/api/v1/events?sort=start_date%20desc&limit=3';
 
