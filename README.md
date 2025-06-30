@@ -1,9 +1,18 @@
-## Description
+## Descripcion
 FrontEnd del proyecto GalerIA
 
 Integrantes: Jessica Conejero
             Eugenia Mora
             Ignacio Gomez
+
+## Tecnologias utilizadas:
+- React
+- Tailwind CSS
+- Redux
+- JavaScript
+
+## Objetivo
+Lograr una Galeria de arte virtual donde se puedan cargar obras de arte y se pueda recorrer por artista, el usuario (a futuro) podra tener sus favoritos y comentar obras, entre otras funcionalidades a agregar.
 
 ## Para poder llegar a la ejecucion del proyecto:
 
