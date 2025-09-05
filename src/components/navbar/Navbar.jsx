@@ -75,12 +75,7 @@ function Navbar() {
           </Link>
           {
             isAuthenticated ? (
-              <button
-                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-                className="bg-red-600 hover:bg-red-800 text-white py-1 px-3 rounded"
-              >
-                Logout
-              </button>
+              <ModalUser /> 
             ) : (
               <button
                 onClick={() => loginWithRedirect()}

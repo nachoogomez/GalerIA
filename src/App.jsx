@@ -1,7 +1,7 @@
+import { useEffect } from 'react'
 import './App.css'
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
-
 import Layout from './components/layout/Layout'
 import Routes from './routes/Routes'
 
