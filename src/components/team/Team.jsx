@@ -10,7 +10,7 @@ const Team = () => {
 
     const teamMembers = [
         { name: ' Eugenia Mora', role: 'Developer', image: '../src/assets/mujer.jpg'  },
-        { name: 'Gomez Ignacio', role: 'Developer', image: '../src/assets/hombre.jpg'},
+        { name: 'Ignacio Gomez', role: 'Developer', image: '../src/assets/hombre.jpg'},
         { name: 'Jessica Conejero', role: 'Developer', image: '../src/assets/mujer.jpg' },
       ]
 

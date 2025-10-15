@@ -3,12 +3,27 @@ import { ProductTable } from "../components/dashboard/ProductTable"
 import { ProductForm } from "../components/dashboard/ProductForm"
 import { useProducts } from "../hooks/useProducts"
 
+/**
+ * Componente Dashboard
+ * 
+ * - Renderiza las obras de arte en una tabla
+ * - Muestra un formulario modal para crear obras de arte
+ * - Edita y elimina obras de arte
+ * 
+ * @returns 
+ */
 export default function Dashboard() {
+  // Hook personalizado para obtener los productos y funciones CRUD
   const { products, loading, error, createProduct, updateProduct, deleteProduct } = useProducts()
 
+  // Estados locales
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentProduct, setCurrentProduct] = useState(null)
 
+  /**
+   * Maneja la eliminación de un producto.
+   * @param {string|number} id - El ID del producto a eliminar
+   */
   const handleDelete = async (id) => {
     try {
       await deleteProduct(id)
@@ -17,11 +32,19 @@ export default function Dashboard() {
     }
   }
 
+  /**
+   * Maneja la edición de un producto.
+   * @param {object} product - El producto a editar
+   */
   const handleEdit = (product) => {
     setCurrentProduct(product)
     setIsFormOpen(true)
   }
 
+  /**
+   * Maneja la creación o edición de un producto.
+   * @param {FormData} formData - Los datos del formulario
+   */
   const handleSubmit = async (formData) => {
     try {
       const nombre = formData.get("nombre")
@@ -57,11 +80,15 @@ export default function Dashboard() {
     }
   }
 
+  /**
+   * Maneja el cierre del formulario.
+   */
   const handleClose = () => {
     setIsFormOpen(false)
     setCurrentProduct(null)
   }
 
+  //Renderizado del estado de carga
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -73,6 +100,7 @@ export default function Dashboard() {
     )
   }
 
+  //Renderizado del estado de error
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -89,6 +117,7 @@ export default function Dashboard() {
     )
   }
 
+  //Renderizado principal
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 py-8">

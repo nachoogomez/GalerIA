@@ -1,17 +1,17 @@
 // Custom hook for Firebase CRUD operations
-import { useState, useEffect } from "react"
-import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore"
-import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage"
-import { db, storage } from "../firebase/config"
+import { useState, useEffect } from "react";
+import { collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "@/firebase/config";
 
 export const useProducts = () => {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const productsCollection = collection(db, "products")
+  const productsCollection = collection(db, "products"); // 🔹 colección unificada
 
-  // Real-time listener for products
+  // Listener en tiempo real
   useEffect(() => {
     const unsubscribe = onSnapshot(
       productsCollection,
@@ -19,114 +19,95 @@ export const useProducts = () => {
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }))
-        setProducts(productsData)
-        setLoading(false)
+        }));
+        setProducts(productsData);
+        setLoading(false);
+        console.log("Productos cargados:", productsData); // depuración
       },
       (error) => {
-        console.error("Error fetching products:", error)
-        setError(error.message)
-        setLoading(false)
-      },
-    )
+        console.error("Error fetching products:", error);
+        setError(error.message);
+        setLoading(false);
+      }
+    );
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
-  // Helper function to upload image to Firebase Storage
+  // Subir imagen a Storage y obtener URL
   const uploadImage = async (imageFile, productId) => {
-    if (!imageFile) return null
-    
-    const imageRef = ref(storage, `products/${productId}_${Date.now()}_${imageFile.name}`)
-    await uploadBytes(imageRef, imageFile)
-    const downloadURL = await getDownloadURL(imageRef)
-    return downloadURL
-  }
+    if (!imageFile) return null;
 
-  // Create product
+    const imageRef = ref(storage, `products/${productId}_${Date.now()}_${imageFile.name}`);
+    await uploadBytes(imageRef, imageFile);
+    const downloadURL = await getDownloadURL(imageRef);
+    return downloadURL;
+  };
+
+  // Crear producto
   const createProduct = async (productData) => {
     try {
-      setLoading(true)
-      
-      // Separate image file from other data
-      const { imagen, ...otherData } = productData
-      
-      // Create product document first
+      setLoading(true);
+      const { imagen, ...otherData } = productData;
+
       const docRef = await addDoc(productsCollection, {
         ...otherData,
         createdAt: new Date(),
         updatedAt: new Date(),
-      })
-      
-      // Upload image if provided and update document with image URL
-      if (imagen && imagen instanceof File) {
-        const imageURL = await uploadImage(imagen, docRef.id)
-        await updateDoc(docRef, { imagen: imageURL })
-      }
-      
-    } catch (error) {
-      console.error("Error creating product:", error)
-      setError(error.message)
-      throw error
-    } finally {
-      setLoading(false)
-    }
-  }
+      });
 
-  // Update product
+      if (imagen && imagen instanceof File) {
+        const imageURL = await uploadImage(imagen, docRef.id);
+        await updateDoc(docRef, { imagenUrl: imageURL });
+      }
+    } catch (err) {
+      console.error("Error creating product:", err);
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Actualizar producto
   const updateProduct = async (id, productData) => {
     try {
-      setLoading(true)
-      const productRef = doc(db, "products", id)
-      
-      // Separate image file from other data
-      const { imagen, ...otherData } = productData
-      
-      // Update basic product data
-      const updateData = {
-        ...otherData,
-        updatedAt: new Date(),
-      }
-      
-      // If there's a new image file, upload it and add URL to update data
-      if (imagen && imagen instanceof File) {
-        const imageURL = await uploadImage(imagen, id)
-        updateData.imagen = imageURL
-      }
-      
-      await updateDoc(productRef, updateData)
-    } catch (error) {
-      console.error("Error updating product:", error)
-      setError(error.message)
-      throw error
-    } finally {
-      setLoading(false)
-    }
-  }
+      setLoading(true);
+      const productRef = doc(db, "products", id);
+      const { imagen, ...otherData } = productData;
 
-  // Delete product
+      const updateData = { ...otherData, updatedAt: new Date() };
+
+      if (imagen && imagen instanceof File) {
+        const imageURL = await uploadImage(imagen, id);
+        updateData.imagenUrl = imageURL;
+      }
+
+      await updateDoc(productRef, updateData);
+    } catch (err) {
+      console.error("Error updating product:", err);
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Eliminar producto
   const deleteProduct = async (id) => {
     try {
-      setLoading(true)
-      const productRef = doc(db, "products", id)
-      await deleteDoc(productRef)
-    } catch (error) {
-      console.error("Error deleting product:", error)
-      setError(error.message)
-      throw error
+      setLoading(true);
+      const productRef = doc(db, "products", id);
+      await deleteDoc(productRef);
+    } catch (err) {
+      console.error("Error deleting product:", err);
+      setError(err.message);
+      throw err;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  return {
-    products,
-    loading,
-    error,
-    createProduct,
-    updateProduct,
-    deleteProduct,
-  }
+  return { products, loading, error, createProduct, updateProduct, deleteProduct };
+};
 
-
-}

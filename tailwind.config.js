@@ -1,13 +1,28 @@
-/** @type {import('tailwindcss').Config} */
+import tailwindAnimate from 'tailwindcss-animate'
+
+/**
+ * Configuración de Tailwind CSS
+ * 
+ * @returns {Object} Configuración de Tailwind CSS
+ * 
+ * @see https://tailwindcss.com/docs/configuration
+ * 
+ * @type {import('tailwindcss').Config} 
+ */
 export default {
-    darkMode: ["class"],
-    content: [
+  darkMode: ["class"],   // Habilita el modo oscuro
+    
+  //Archivos donde Tailwind busca las clases para generar el CSS
+  content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
   	extend: {
-  		colors: {
+
+		//Colores personalizados
+		colors: {
   			bgBlue: '#020035',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -50,13 +65,17 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+
+		//Bordes personalizados
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+  		},
+  	},
   },
-  plugins: [require("tailwindcss-animate")],
-}
 
+  plugins: [
+	tailwindAnimate   // Plugin de Tailwind CSS para animaciones
+],
+}
