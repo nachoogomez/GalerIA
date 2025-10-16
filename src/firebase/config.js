@@ -1,4 +1,11 @@
-// src/firebase/config.js
+/**
+ * Configuración e inicialización de Firebase.
+ * 
+ * Este archivo se encarga de conectar la aplicación con Firebase utilizando
+ * las variables de entorno definidas en el archivo `.env`.  
+ * Expone las instancias de Firestore y Storage para que puedan usarse
+ * en toda la aplicación.
+ */
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";

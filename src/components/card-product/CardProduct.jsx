@@ -1,10 +1,24 @@
-
-
+/**
+ * Componente que muestra la información visual de un producto en forma de tarjeta.
+ * 
+ * Incluye una imagen (con placeholder o estado de carga), el nombre, la descripción
+ * y un botón para ver más detalles.  
+ * Maneja los estados de carga y error de la imagen para mejorar la experiencia visual.
+ * 
+ * @param {Object} props - Propiedades del componente.
+ * @param {string} props.nombre - Nombre o título del producto.
+ * @param {string} props.descripcion - Descripción breve del producto.
+ * @param {string} props.imagenUrl - URL principal de la imagen del producto.
+ * @param {string} props.placeholderUrl - Imagen base64 de baja resolución usada como placeholder.
+ * 
+ * @returns {JSX.Element} Tarjeta con los datos del producto.
+ */
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const CardProduct = ({ nombre, descripcion, imagenUrl, placeholderUrl }) => {
+  // Estado para manejar la carga y errores de la imagen
   const [imageLoading, setImageLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
 
@@ -23,12 +37,12 @@ const CardProduct = ({ nombre, descripcion, imagenUrl, placeholderUrl }) => {
         />
         {imageLoading && (
           <div className="absolute inset-0 animate-pulse bg-gray-300 flex items-center justify-center">
-            <span className="text-gray-500">Cargando...</span>
+            <span className="text-gray-500">Uploading...</span>
           </div>
         )}
         {imageError && (
           <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-            <span className="text-gray-500">Sin imagen</span>
+            <span className="text-gray-500">No image</span>
           </div>
         )}
       </div>

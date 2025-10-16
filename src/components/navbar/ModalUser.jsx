@@ -23,8 +23,7 @@ const ModalUser = () => {
   const namespace = `${import.meta.env.VITE_AUTH0_NAMESPACE}`;
   const userRoles = user?.[`${namespace}/roles`] || [];
 
-  
-  
+   
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
