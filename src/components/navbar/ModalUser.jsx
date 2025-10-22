@@ -10,20 +10,36 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
 
+/**
+ * Componente ModalUser - Dropdown del usuario autenticado
+ *
+ * Funcionalidades:
+ * - Muestra avatar del usuario
+ * - Detecta si el usuario tiene rol ADMIN para mostrar link al Dashboard
+ * - Permite cerrar sesión
+ *
+ * Roles de Auth0:
+ * - Los roles deben estar configurados en Auth0 con el namespace correcto
+ * - El namespace debe coincidir con VITE_AUTH0_NAMESPACE en .env
+ *
+ * @returns {JSX.Element} Dropdown menu del usuario
+ */
 const ModalUser = () => {
-
-  const { logout, user, isAuthenticated, isLoading } = useAuth0();
-
+  const { logout, user, isLoading } = useAuth0();
 
   if (isLoading) {
     return <div>Cargando...</div>;
   }
 
-  // Define tu namespace
-  const namespace = `${import.meta.env.VITE_AUTH0_NAMESPACE}`;
+  // Obtener el namespace desde las variables de entorno
+  const namespace = import.meta.env.VITE_AUTH0_NAMESPACE;
+
+  // Extraer roles del usuario usando el namespace
   const userRoles = user?.[`${namespace}/roles`] || [];
 
-   
+  // Verificar si el usuario es admin
+  const isAdmin = userRoles.includes('ADMIN');
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -36,15 +52,20 @@ const ModalUser = () => {
       <DropdownMenuContent className="mr-8 min-w-[220px] py-4 px-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          {
-            userRoles.includes('ADMIN') ? 
-            <DropdownMenuItem>
-              <Link to="/dashboard">Dashboard</Link>
-            </DropdownMenuItem> : null
-          } 
-        </DropdownMenuItem>
-        <DropdownMenuSeparator className="my-1" />
+
+        {/* Mostrar Dashboard solo si el usuario es ADMIN */}
+        {isAdmin && (
+          <>
+            <DropdownMenuItem asChild>
+              <Link to="/dashboard" className="cursor-pointer">
+                Dashboard
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="my-1" />
+          </>
+        )}
+
+        {/* Opción de Logout */}
         <DropdownMenuItem className="p-0">
           <Button
             onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}

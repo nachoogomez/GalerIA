@@ -36,7 +36,6 @@ export const useProducts = () => {
         }));
         setProducts(productsData);
         setLoading(false);
-        console.log("Productos cargados:", productsData); // depuración
       },
       (error) => {
         console.error("Error fetching products:", error);

@@ -6,15 +6,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 /**
  * Componente 'Navbar' que renderiza la barra de navegación principal de la aplicación.
- * 
+ *
  * Funcionalidades:
  * - Muestra el logo con enlace a la página principal.
  * - Links de navegación: About Us, Products, Contact Us.
  * - Controla autenticación con Auth0 para mostrar botones de Sign In o Logout.
+ * - Maneja el estado de carga de Auth0 para evitar parpadeo del botón de login.
  * - En pantallas grandes muestra el menú horizontalmente.
  * - En pantallas pequeñas muestra un menú hamburguesa desplegable.
  * - Al hacer scroll, cierra el menú desplegable si está abierto.
- * - Cuando el usuario está autenticado, muestra el componente ModalUser en móvil.
+ * - Cuando el usuario está autenticado, muestra el componente ModalUser.
  *
  * @returns {JSX.Element} El elemento que representa la barra de navegación.
  */
@@ -50,9 +51,7 @@ function Navbar() {
   /**
    * Hook para manejar la autenticación con Auth0
    */
-  const {loginWithRedirect, isAuthenticated, user, logout} = useAuth0();
-
-  //console.log(user);
+  const {loginWithRedirect, isAuthenticated, isLoading, user, logout} = useAuth0();
   
   return (
     <nav className="bg-gray-900 p-4 w-full">
@@ -74,8 +73,10 @@ function Navbar() {
             Contact Us
           </Link>
           {
-            isAuthenticated ? (
-              <ModalUser /> 
+            isLoading ? (
+              <div className="text-white text-sm">Loading...</div>
+            ) : isAuthenticated ? (
+              <ModalUser />
             ) : (
               <button
                 onClick={() => loginWithRedirect()}
@@ -90,7 +91,8 @@ function Navbar() {
 
         {/* Icono hamburguesa para pantallas pequeñas */}
         <div className="md:hidden flex gap-5">
-          {isAuthenticated ? <ModalUser /> : null}  {/* Mostrar el componente ModalUser si el usuario esta autenticado */}
+          {/* Mostrar el componente ModalUser si el usuario esta autenticado y no está cargando */}
+          {!isLoading && isAuthenticated ? <ModalUser /> : null}
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"
@@ -125,10 +127,12 @@ function Navbar() {
           <Link to="/contact" className="block py-2 px-4 text-white hover:bg-blue-700">
             Contact Us
           </Link>
-          {!isAuthenticated ? <button onClick={() => loginWithRedirect()} className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
-            Sign In
-            <FaArrowRight />
-          </button> : null }
+          {!isLoading && !isAuthenticated ? (
+            <button onClick={() => loginWithRedirect()} className="inline-flex text-white items-center bg-[#4F46E5] border-0 py-1 px-3 focus:outline-none hover:bg-[#8f89ee] rounded text-base mt-4 md:mt-0">
+              Sign In
+              <FaArrowRight />
+            </button>
+          ) : null}
         </div>
       )}
     </nav>

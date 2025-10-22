@@ -69,26 +69,21 @@ const LastProducts = () => {
         }
 
         try {
-          console.log("Loading image in LastProducts:", imagen);
           
           // Si la imagen ya es una URL completa de Firebase, la usamos directamente
           if (imagen.includes('firebasestorage.googleapis.com') || imagen.startsWith('http')) {
-            console.log("Using direct URL in LastProducts:", imagen);
             setImageUrl(imagen);
             setImageLoading(false);
             return;
           }
 
           // Si no es una URL, obtenemos la URL de descarga de Firebase Storage
-          console.log("Getting download URL for path in LastProducts:", imagen);
           const imageRef = ref(storage, imagen);
           const url = await getDownloadURL(imageRef);
-          console.log("Generated download URL in LastProducts:", url);
           setImageUrl(url);
           setImageLoading(false);
         } catch (error) {
-          console.error("Error loading image from Firebase in LastProducts:", error);
-          console.error("Image path/URL was:", imagen);
+          console.error("Error loading image from Firebase:", error);
           setImageError(true);
           setImageLoading(false);
         }
