@@ -10,7 +10,7 @@ import { useProducts } from "../hooks/useProducts"
  * - Muestra un formulario modal para crear obras de arte
  * - Edita y elimina obras de arte
  * 
- * @returns 
+ * @returns {JSX.Element} Componente Dashboard
  */
 export default function Dashboard() {
   // Hook personalizado para obtener los productos y funciones CRUD
